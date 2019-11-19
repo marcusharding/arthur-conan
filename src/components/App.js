@@ -1,23 +1,16 @@
 import React from 'react';
+import '../styles/app.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+        <header className="header">
+          <h1 className="header-text">Arthur Conan-Doyle</h1>
+          <p className="header-text">A location based App</p>
+        </header>
+    );
+  }
 }
 
 export default App;
+
