@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
+import LandingPage from './components/LandingPage';
 import Map from './components/Map';
 import Timeline from './components/Timeline';
 import Error from './components/Error';
@@ -16,7 +16,7 @@ class App extends Component {
           <div>
             <Navigation />
               <Switch>
-              <Route path="/" component={Home} exact/>
+              <Route path="/" component={LandingPage} exact/>
               <Route path="/Map" component={Map}/>
               <Route path="/Timeline" component={Timeline}/>
               <Route component={Error}/>

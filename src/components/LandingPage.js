@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/app.scss';
  
-const home = () => {
+const LandingPage = () => {
     return (
       <div className="header">
         <h1 className="header-text">Arthur Conan-Doyle</h1>
@@ -14,4 +14,4 @@ const home = () => {
     );
 }
  
-export default home;
+export default LandingPage;
