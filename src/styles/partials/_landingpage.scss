@@ -2,7 +2,11 @@
 
 .home-buttons__container{
     display: flex;
+    justify-content: center;
     padding-top: 100px;
+    .btn{
+        margin-right: 25px;
+    }
 }
 
 .homepage__header{
@@ -40,4 +44,16 @@
 
 .header-text--secondary{
     color: white;
+}
+
+// Landing Page Text Styles
+
+.header__title{
+    font-size: 30px;
+    @media only screen and (min-width: 640px)  {
+        font-size: 60px;
+    }
+    @media only screen and (min-width: 1024px)  {
+        font-size: 100px;
+    }
 }
