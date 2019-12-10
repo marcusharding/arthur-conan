@@ -1,6 +1,57 @@
-// CONFIGURATION
+// MASTER CONFIGURATION
 
-// APP COLOURS
+// BODY BASE COLOUR
+
+body {
+  background-color: #353A50;
+}
+
+/*
+	IMAGE DEFAULTS
+*/
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /*
+      CLASS USED FOR LAZYLOADING IAMGES, COMBINED WITH DATA-SRC
+  */
+  .lazyload {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+// ==========================================================================
+// BASE CONTAINER CLASS
+// ==========================================================================
+
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1170px;
+    width: 90%;
+  }
+  
+  .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+  
+  .bg-currentColor {
+    background-color: currentColor;
+  }
+
+/* APP COLOURS */
 
 .text-primary{
     color: #353A50;
@@ -11,7 +62,7 @@
 }
 
 .btn{
-    padding: 3px 30px;
+    padding: 8px 75px;
     color: white;
     border-radius: 5px;
 }

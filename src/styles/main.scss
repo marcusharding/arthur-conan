@@ -2,6 +2,9 @@
 // CONFIG
 @import './partials/config';
 
+// Helpers
+@import './Helpers/general';
+
 // MAP
 @import './partials/map';
 
@@ -9,5 +12,7 @@
 @import './partials/landingpage';
 
 // TIMELINE
-@import './partials/config';
+@import './partials/timeline';
 
+// TAILWIND
+@import './framework/tailwind';

@@ -4,9 +4,7 @@ import LandingPage from './components/LandingPage';
 import Map from './components/Map';
 import Timeline from './components/Timeline';
 import Error from './components/Error';
-import Navigation from './components/Navigation';
-import './styles/app.scss';
-import './styles/main.scss';
+import Navigation from './components/01-global/Navigation';
 
 class App extends Component {
   render() {
