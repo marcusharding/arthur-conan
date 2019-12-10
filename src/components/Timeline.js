@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TimelineTeaser from './02-teaser/TimelineTeaser';
 import Button from './03-objects/Button';
-import Tilt from 'react-tilt';
 
 
 class Timeline extends React.Component {
