@@ -14,5 +14,12 @@
 // TIMELINE
 @import './partials/timeline';
 
-// TAILWIND
+// SLIDER 
+@import './partials/slider';
+
+
+// # FRAMEWORK - http://sass-guidelin.es/#base-folder
+// ==========================================================================
+
 @import './framework/tailwind';
+@import './framework/slick-slide';

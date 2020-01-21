@@ -1,0 +1,25 @@
+.slick-slide{
+    opacity: 0.25;
+    transition: 300ms;
+    &:hover{
+        opacity: 0.5;
+        transform: translateX(-10px);
+    }
+}
+
+.slick-current{
+    opacity: 1;
+    transition: 300ms;
+    &:hover{
+        transform: scale(1.025);
+        opacity: 1;
+    }
+}
+
+.slick-dots li button:before {
+    color: white;
+}
+
+.slick-dots li button {
+    color: white;
+}
