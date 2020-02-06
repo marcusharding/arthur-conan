@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Map from 'pigeon-maps'
 import Marker from 'pigeon-marker'
 import Overlay from 'pigeon-overlay'
 
 
-class PortsmouthMap extends React.Component {
+export class PortsmouthMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,14 +66,7 @@ class PortsmouthMap extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <PortsmouthMap />,
-  document.getElementById('root')
-);
 
-
-
-export default PortsmouthMap;
 
 
 
