@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from './03-objects/Button';
-import Slider from './02-teaser/Slider';
+import Slider from '../02-teaser/Slider';
+import './timeline.scss';
 
 const slideData = [
     {
@@ -32,26 +32,26 @@ const slideData = [
 
 
 
-class Timeline extends React.Component {
+export class Timeline extends React.Component {
 
    render() {
      
      return (
         <React.Fragment>
-            <section className="h-auto overflow-x-hidden">
-                <div className="wrapper">
+            <section className="flex flex-col justify-center h-screen lg:h-auto overflow-x-hidden">
+                <div className="w-11/12 mx-auto">
                     <p className="text-white text-3xl py-4">Timeline</p>
                 </div>
-            <div className="">
+            <div className="w-11/12 mx-auto">
                 <Slider
                 heading="Example Slider"
                 slides={slideData}
                 />
             </div>
             <div className="wrapper text-center pt-20 relative">
-                <Button
+                {/* <Button
                     btnText={'Go Back'}
-                />
+                /> */}
             </div>
         </section>
       </React.Fragment>
@@ -59,4 +59,3 @@ class Timeline extends React.Component {
    }
  }
  
-export default Timeline;
