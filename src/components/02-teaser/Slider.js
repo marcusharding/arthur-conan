@@ -39,6 +39,9 @@ class Slide extends React.Component {
         const { src, headline, date, index } = this.props.slide
         const current = this.props.current
         let classNames = 'slide'
+        const slideMargin = {
+          marginRight: '1%'
+        }
         
         if (current === index) classNames += ' slide--current'
         else if (current - 1 === index) classNames += ' slide--previous'
@@ -50,6 +53,7 @@ class Slide extends React.Component {
             onClick={this.handleSlideClick}
             onMouseMove={this.handleMouseMove}
             onMouseLeave={this.handleMouseLeave}
+            style={slideMargin}
             >
                 <div className="slide__image-wrapper">
                     <img 
