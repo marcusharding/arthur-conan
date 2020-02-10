@@ -55,19 +55,21 @@ class Slide extends React.Component {
             onMouseLeave={this.handleMouseLeave}
             style={slideMargin}
             >
-                <div className="slide__image-wrapper">
-                    <img 
-                        className="slide__image"
-                        alt={headline}
-                        src={src}
-                        onLoad={this.imageLoaded}
-                    />
-                </div>
-        
-                <article className="slide__content">
+              <div className="slide__image-wrapper">
+                <img 
+                    className="slide__image"
+                    alt={headline}
+                    src={src}
+                    onLoad={this.imageLoaded}
+                />
+              </div>
+              <article className="slide__content">
                 <h1 className="slide__date">{date}</h1>
                 <h2 className="slide__headline">{headline}</h2>
-                </article>
+                <div className="slide__overlay">
+                  <a className="font-bold text-2xl" href="#">Read More</a>
+                </div>
+              </article>
             </li>
           )
       }
@@ -140,7 +142,7 @@ class Slider extends React.Component {
       return (
         <div className='slider' aria-labelledby={headingId}>
           <ul className="slider__wrapper" style={wrapperTransform}>
-            <h3 id={headingId} class="visuallyhidden">{heading}</h3>
+            <h3 id={headingId} className="visuallyhidden">{heading}</h3>
             
             {slides.map(slide => {
               return (
@@ -159,6 +161,7 @@ class Slider extends React.Component {
               type="previous"
               title="Go to previous slide"
               handleClick={this.handlePreviousClick}
+              id="slideControlPrevious"
             />
             
             <SliderControl 

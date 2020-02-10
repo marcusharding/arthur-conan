@@ -1,0 +1,23 @@
+import React from 'react'
+import './timelineTracker.scss'
+
+
+
+export class TimelineTracker extends React.Component {
+    render() {
+        // Grabbing the set width of the marker based on the amount of slides
+        const trackerWidth = {
+            width: this.props.trackerLength + '%'
+        }
+        // const trackerMargin = {
+        //     marginLeft: this.props
+        // }
+        return(
+            <div className="timelineTracker__container mb-12">
+                <div style={trackerWidth} className="timelineTracker__marker bg-secondary">
+
+                </div>
+            </div>
+        )
+    }
+}
