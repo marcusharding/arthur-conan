@@ -79,9 +79,9 @@ class Slide extends React.Component {
 // Slider control
 // =========================
 
-const SliderControl = ({ type, title, handleClick }) => {
+const SliderControl = ({ type, title, handleClick, trackerClick }) => {
     return (
-      <button className={`btn btn--${type}`} title={title} onClick={handleClick}>
+      <button className={`btn btn--${type}`} title={title} onClick={()=>{trackerClick(); handleClick()}}>
         <svg className="icon" viewBox="0 0 24 24">
           <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
         </svg>
@@ -89,7 +89,7 @@ const SliderControl = ({ type, title, handleClick }) => {
     )
   }
 
-  // =========================
+// =========================
 // Slider
 // =========================
 
@@ -132,6 +132,7 @@ class Slider extends React.Component {
     }
   
     render() {
+
       const { current, direction } = this.state
       const { slides, heading } = this.props 
       const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
@@ -161,13 +162,14 @@ class Slider extends React.Component {
               type="previous"
               title="Go to previous slide"
               handleClick={this.handlePreviousClick}
-              id="slideControlPrevious"
+              trackerClick={this.props.trackerPreviousClick}
             />
             
             <SliderControl 
               type="next"
               title="Go to next slide"
               handleClick={this.handleNextClick}
+              trackerClick={this.props.trackerNextClick}
             />
           </div>
         </div>
