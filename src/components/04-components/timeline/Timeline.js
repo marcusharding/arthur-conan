@@ -2,7 +2,8 @@ import React from 'react';
 import Slider from '../../02-teaser/Slider';
 import './timeline.scss';
 import './slider.scss';
-import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker'
+import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker';
+import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal';
 
 const slideData = [
     {
@@ -61,12 +62,22 @@ export class Timeline extends React.Component {
 
     this.trackerNextClick = this.trackerNextClick.bind(this);
     this.trackerPreviousClick = this.trackerPreviousClick.bind(this);
+    this.modalHandle = this.modalHandle.bind(this);
+    this.modalHide = this.modalHide.bind(this);
 
-    this.state = { trackerMargin: 0}
+    this.state = { trackerMargin: 0, modalBlur: 1, modalHide: 'none'}
   }
 
-  
+  // Toggle hiding and showing the modal on click
+  modalHide = () => {
+    this.setState({modalHide: this.state.modalHide === 'none' ? this.setState.modalHide ='block': this.setState.modalHide = 'none'})
+  }
+  //  Toggle the opacity of the body beneath the modal onClick
+  modalHandle = () => {
+    this.setState({modalBlur: this.state.modalBlur === 1 ? this.state.modalBlur - 0.9: this.state.modalBlur + 0.9})
+  }
 
+  // Function to control the margin of the tracker on each next button click
   trackerNextClick = () => {
     this.setState({ trackerMargin: this.state.trackerMargin + trackerLength })
     if(this.state.trackerMargin > 100 - trackerLength * 2) {
@@ -74,6 +85,7 @@ export class Timeline extends React.Component {
     }
   }
 
+  // Function to control the margin of the tracker on the previous button click
   trackerPreviousClick = () => {
     this.setState({ trackerMargin: this.state.trackerMargin - trackerLength })
     if(this.state.trackerMargin < Math.round(trackerLength)) {
@@ -82,11 +94,30 @@ export class Timeline extends React.Component {
   }
 
    render() {
-     console.log(this.state.trackerMargin)
-     console.log(100 / slideData.length)
+
+    // Setting opacity for modalBlur state to control when modal is opened and closed
+    const modalContainer = {
+      opacity: this.state.modalBlur
+    }
+
+    const modalHider = {
+      display: this.state.modalHide,
+    }
+
      return (
         <React.Fragment>
-          <section className="flex flex-col justify-center h-screen lg:h-auto overflow-x-hidden">
+          <section className="flex flex-col justify-center h-screen overflow-x-hidden">
+
+          {/** TIMELINE MODAL */}
+          <TimelineModal
+            modalHider={modalHider}
+            modalHide={this.modalHide}
+            modalHandle={this.modalHandle}
+          />
+
+          {/** CREATING A CONTAINER TO BLUR ON MODAL OPEN */}
+          <div style={modalContainer}>
+
             <div className="w-11/12 mx-auto py-12">
                 <p className="text-white text-3xl">Timeline</p>
             </div>
@@ -102,9 +133,13 @@ export class Timeline extends React.Component {
                 slides={slideData}
                 trackerNextClick={this.trackerNextClick}
                 trackerPreviousClick={this.trackerPreviousClick}
+                modalHandle={this.modalHandle}
+                modalHide={this.modalHide}
                 />
             </div>
             <div className="wrapper text-center pt-20 relative">
+            </div>
+
           </div>
         </section>
       </React.Fragment>

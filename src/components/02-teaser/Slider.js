@@ -36,6 +36,7 @@ class Slide extends React.Component {
         event.target.style.opacity = 1
       }
       render() {
+
         const { src, headline, date, index } = this.props.slide
         const current = this.props.current
         let classNames = 'slide'
@@ -66,8 +67,8 @@ class Slide extends React.Component {
               <article className="slide__content">
                 <h1 className="slide__date">{date}</h1>
                 <h2 className="slide__headline">{headline}</h2>
-                <div className="slide__overlay">
-                  <a className="font-bold text-2xl" href="#">Read More</a>
+                <div onClick={()=>{this.props.modalHandle(); this.props.modalHide()}} className="slide__overlay">
+                  <button className="font-bold text-2xl">Read More</button>
                 </div>
               </article>
             </li>
@@ -152,6 +153,8 @@ class Slider extends React.Component {
                   slide={slide}
                   current={current}
                   handleSlideClick={this.handleSlideClick}
+                  modalHandle={this.props.modalHandle}
+                  modalHide={this.props.modalHide}
                 />
               )
             })}
