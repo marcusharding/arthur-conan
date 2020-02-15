@@ -36,13 +36,13 @@ class Slide extends React.Component {
         event.target.style.opacity = 1
       }
       render() {
-
         const { src, headline, date, index } = this.props.slide
         const current = this.props.current
         let classNames = 'slide'
         const slideMargin = {
           marginRight: '1%'
         }
+
         
         if (current === index) classNames += ' slide--current'
         else if (current - 1 === index) classNames += ' slide--previous'
@@ -51,7 +51,7 @@ class Slide extends React.Component {
             <li 
             ref={this.slide}
             className={classNames} 
-            onClick={this.handleSlideClick}
+            onClick={()=>{this.handleSlideClick(); this.props.indexUpdater(current)}}
             onMouseMove={this.handleMouseMove}
             onMouseLeave={this.handleMouseLeave}
             style={slideMargin}
@@ -80,9 +80,9 @@ class Slide extends React.Component {
 // Slider control
 // =========================
 
-const SliderControl = ({ type, title, handleClick, trackerClick }) => {
+const SliderControl = ({ type, title, handleClick, trackerClick, indexUpdater, current }) => {
     return (
-      <button className={`btn btn--${type}`} title={title} onClick={()=>{trackerClick(); handleClick()}}>
+      <button className={`btn btn--${type}`} title={title} onClick={()=>{indexUpdater(current); handleClick(); trackerClick();}}>
         <svg className="icon" viewBox="0 0 24 24">
           <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
         </svg>
@@ -133,7 +133,6 @@ class Slider extends React.Component {
     }
   
     render() {
-
       const { current, direction } = this.state
       const { slides, heading } = this.props 
       const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
@@ -155,6 +154,7 @@ class Slider extends React.Component {
                   handleSlideClick={this.handleSlideClick}
                   modalHandle={this.props.modalHandle}
                   modalHide={this.props.modalHide}
+                  indexUpdater={this.props.indexUpdater}
                 />
               )
             })}
@@ -163,16 +163,20 @@ class Slider extends React.Component {
           <div className="slider__controls">
             <SliderControl 
               type="previous"
+              current={current}
               title="Go to previous slide"
               handleClick={this.handlePreviousClick}
               trackerClick={this.props.trackerPreviousClick}
+              indexUpdater={this.props.indexUpdater}
             />
             
             <SliderControl 
               type="next"
+              current={current}
               title="Go to next slide"
               handleClick={this.handleNextClick}
               trackerClick={this.props.trackerNextClick}
+              indexUpdater={this.props.indexUpdater}
             />
           </div>
         </div>

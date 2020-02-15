@@ -64,17 +64,31 @@ export class Timeline extends React.Component {
     this.trackerPreviousClick = this.trackerPreviousClick.bind(this);
     this.modalHandle = this.modalHandle.bind(this);
     this.modalHide = this.modalHide.bind(this);
+    this.slideIndexUpdater = this.slideIndexUpdater.bind(this);
 
-    this.state = { trackerMargin: 0, modalBlur: 1, modalHide: 'none'}
+    this.state = { trackerMargin: 0, slideIndex: 0, modalBlur: 1, modalHide: 'none'}
   }
 
-  // Toggle hiding and showing the modal on click
-  modalHide = () => {
-    this.setState({modalHide: this.state.modalHide === 'none' ? this.setState.modalHide ='block': this.setState.modalHide = 'none'})
-  }
-  //  Toggle the opacity of the body beneath the modal onClick
-  modalHandle = () => {
-    this.setState({modalBlur: this.state.modalBlur === 1 ? this.state.modalBlur - 0.9: this.state.modalBlur + 0.9})
+  slideIndexUpdater = (current) => {
+
+    // if (this.state.slideIndex === 0) {
+    //   this.setState({slideIndex: 1})
+    // } else if (this.state.slideIndex === 6 & current === 5) {
+    //   this.setState({slideIndex: 0})
+    // } else if (this.state.slideIndex > 5) {
+    //   this.setState({slideIndex: 0})
+    // } else if (current > this.state.slideIndex) {
+    //   this.setState({slideIndex: current - 1})
+    // } else {
+    //   this.setState({slideIndex: this.state.slideIndex + 1})
+    // }
+
+    // if(this.state.slideIndex === 0) {
+    //   this.setState({trackerMargin: this.state.trackerLength})
+    // } else(this.setState({trackerMargin: this.state.slideIndex * trackerLength}))
+
+    
+    console.log(current)
   }
 
   // Function to control the margin of the tracker on each next button click
@@ -91,6 +105,17 @@ export class Timeline extends React.Component {
     if(this.state.trackerMargin < Math.round(trackerLength)) {
       this.setState({trackerMargin: 100 - trackerLength})
     } 
+  }
+
+
+
+  // Toggle hiding and showing the modal on click
+  modalHide = () => {
+    this.setState({modalHide: this.state.modalHide === 'none' ? this.setState.modalHide ='block': this.setState.modalHide = 'none'})
+  }
+  //  Toggle the opacity of the body beneath the modal onClick
+  modalHandle = () => {
+    this.setState({modalBlur: this.state.modalBlur === 1 ? this.state.modalBlur - 0.9: this.state.modalBlur + 0.9})
   }
 
    render() {
@@ -113,6 +138,7 @@ export class Timeline extends React.Component {
             modalHider={modalHider}
             modalHide={this.modalHide}
             modalHandle={this.modalHandle}
+            slides={slideData}
           />
 
           {/** CREATING A CONTAINER TO BLUR ON MODAL OPEN */}
@@ -135,6 +161,7 @@ export class Timeline extends React.Component {
                 trackerPreviousClick={this.trackerPreviousClick}
                 modalHandle={this.modalHandle}
                 modalHide={this.modalHide}
+                indexUpdater={this.slideIndexUpdater}
                 />
             </div>
             <div className="wrapper text-center pt-20 relative">
