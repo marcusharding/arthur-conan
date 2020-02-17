@@ -71,23 +71,7 @@ export class Timeline extends React.Component {
 
   slideIndexUpdater = (current) => {
 
-    // if (this.state.slideIndex === 0) {
-    //   this.setState({slideIndex: 1})
-    // } else if (this.state.slideIndex === 6 & current === 5) {
-    //   this.setState({slideIndex: 0})
-    // } else if (this.state.slideIndex > 5) {
-    //   this.setState({slideIndex: 0})
-    // } else if (current > this.state.slideIndex) {
-    //   this.setState({slideIndex: current - 1})
-    // } else {
-    //   this.setState({slideIndex: this.state.slideIndex + 1})
-    // }
-
-    // if(this.state.slideIndex === 0) {
-    //   this.setState({trackerMargin: this.state.trackerLength})
-    // } else(this.setState({trackerMargin: this.state.slideIndex * trackerLength}))
-
-    
+    this.setState({slideIndex: current})
     console.log(current)
   }
 
