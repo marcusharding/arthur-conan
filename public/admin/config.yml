@@ -26,7 +26,7 @@ collections:
           - name: start_url
             label: 'Start URL'
             widget: string
-            default: '.'
+            default: 'https://arthur-conan.netlify.com/'
             required: true
           - name: display
             label: 'Display Type'
