@@ -9,8 +9,8 @@ const LandingPage = () => {
         <div className="z-10 text-center wrapper">
           <h1 className="header-text--primary header__title">Arthur Conan-Doyle</h1>
           <p className="header-text--secondary header__subheading">The best way to navigate the life of Arthur Conan-Doyle, lets get started</p>
-          <div className="home-buttons__container">
-            <NavLink className="btn btn--primary" to="/Map">Map</NavLink>
+          <div className="home-buttons__container flex flex-col lg:flex-row justify-center items-center">
+            <NavLink className="btn btn--primary lg:mr-8" to="/Map">Map</NavLink>
             <NavLink className="btn btn--secondary" to="/Timeline">Timeline</NavLink>
           </div>
         </div>
