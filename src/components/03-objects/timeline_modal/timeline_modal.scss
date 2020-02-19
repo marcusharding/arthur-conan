@@ -1,22 +1,31 @@
 .timeline-Modal__container {
     position: absolute;
-    width: 63%;
-    height: 85%;
+    width: 25%;
+    height: auto;
     z-index: 30;
-    border-radius: 10%;
+    border-radius: 2%;
+    left: 50%;
+    margin-left: -12.5%;
+    img {
+      border-top-left-radius: 2%;
+      border-top-right-radius: 2%;
+    }
+    hr {
+      border-color: #a0aec0;
+    }
 }
 
 .close__container {
-    width: 4%;
-    height: 6%;
-    position: relative;
+    width: 30px;
+    height: 30px;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     margin-left: auto;
-    top: -2%;
-    right: 7%;
+    top: -10%;
+    right: 0%;
 }
 
 .close {
@@ -27,20 +36,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #494D61;
+    background-color: #f7fafc;
     border-radius: 50%;
     transition: 200ms ease-in;
 
     &:hover {
-        background-color: #2A2E40;
+        background-color: #718096;
     }
   }
   .close:before, .close:after {
     position: absolute;
     content: ' ';
-    height: 25px;
+    height: 20px;
     width: 1px;
-    background-color: white;
+    background-color: #353A50;
   }
   .close:before {
     transform: rotate(45deg);
