@@ -11,7 +11,7 @@ export class App extends Component {
       <Fragment>
         <BrowserRouter>
           <div>
-              <Switch>
+            <Switch>
               <Route path="/" component={LandingPage} exact/>
               <Route path="/Map" component={PortsmouthMap}/>
               <Route path="/Timeline" component={Timeline}/>
