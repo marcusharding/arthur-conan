@@ -1,0 +1,74 @@
+//Main Navigation strip
+
+.toolbar {
+    position: fixed;
+    top: 0;
+    width:100%;
+    background: #2A2E43;
+    height: 56px;
+}
+
+.toolbar_nav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.toolbar_logo {
+    margin-left: 1rem;
+}
+
+.toolbar_logo li {
+     color: white;
+     text-decoration: none;
+     font-size: 1.5rem;
+     list-style-type: none;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.toolbar_nav-items {
+    visibility: hidden;
+}
+
+
+@media only screen and (min-width: 640px)  {
+
+    .nav-drawer-button{
+       visibility: hidden;
+    }
+
+    .toolbar_nav-items {
+        visibility: visible;
+    }
+
+
+    .toolbar_nav-items ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    
+    .toolbar_nav-items li {
+        padding: 0 1rem;
+        height: 35px;
+        min-width: 135px;
+        justify-content: center;
+        border-radius: 10px;
+    }
+    
+    .toolbar_nav-items a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .toolbar_nav-items li:hover,
+    .toolbar_nav-items li:active{
+        background: #3497FD;
+    }
+
+}

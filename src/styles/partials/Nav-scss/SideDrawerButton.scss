@@ -1,0 +1,42 @@
+//sideDrawerButton
+
+.sidedrawer_button {
+    width: 100vh;
+    display: flex;
+    float: right;
+    align-items: flex-start;
+    align-self: start;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 32px;
+    width: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 0.8rem;
+    margin-right: 0.8rem;
+
+}
+
+.sidedrawer_button:focus {
+    outline: none;
+}
+
+.sidebutton__line_1 {
+    width: 15px;
+    height: 2.5px;
+    background:white;
+}
+
+.sidebutton__line_2 {
+    width: 28px;
+    height: 2.5px;
+    background:white;
+}
+.sidebutton__line_3 {
+    margin-left: 13px;
+    width: 15px;
+    height: 2.5px;
+    background:white;
+}
