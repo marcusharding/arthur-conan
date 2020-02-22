@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import { PortsmouthMap } from './components/Map';
 import { Timeline } from './components/04-components/timeline/Timeline';
 import Error from './components/Error';
+import Loading from "./loading.js"
 
 export class App extends Component {
   render() {
@@ -11,6 +12,7 @@ export class App extends Component {
       <Fragment>
         <BrowserRouter>
           <div>
+          <Loading />
             <Switch>
               <Route path="/" component={LandingPage} exact/>
               <Route path="/Map" component={PortsmouthMap}/>
