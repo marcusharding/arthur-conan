@@ -42,6 +42,7 @@ class Slide extends React.Component {
         const slideMargin = {
           marginRight: '1%'
         }
+
         
         if (current === index) classNames += ' slide--current'
         else if (current - 1 === index) classNames += ' slide--previous'
@@ -50,24 +51,26 @@ class Slide extends React.Component {
             <li 
             ref={this.slide}
             className={classNames} 
-            onClick={this.handleSlideClick}
+            onClick={()=>{this.handleSlideClick(); this.props.indexUpdater(current)}}
             onMouseMove={this.handleMouseMove}
             onMouseLeave={this.handleMouseLeave}
             style={slideMargin}
             >
-                <div className="slide__image-wrapper">
-                    <img 
-                        className="slide__image"
-                        alt={headline}
-                        src={src}
-                        onLoad={this.imageLoaded}
-                    />
-                </div>
-        
-                <article className="slide__content">
+              <div className="slide__image-wrapper">
+                <img 
+                    className="slide__image"
+                    alt={headline}
+                    src={src}
+                    onLoad={this.imageLoaded}
+                />
+              </div>
+              <article className="slide__content">
                 <h1 className="slide__date">{date}</h1>
                 <h2 className="slide__headline">{headline}</h2>
-                </article>
+                <div onClick={()=>{this.props.modalHandle(); this.props.modalHide()}} className="slide__overlay">
+                  <button className="font-bold text-2xl">Read More</button>
+                </div>
+              </article>
             </li>
           )
       }
@@ -77,9 +80,9 @@ class Slide extends React.Component {
 // Slider control
 // =========================
 
-const SliderControl = ({ type, title, handleClick }) => {
+const SliderControl = ({ type, title, handleClick, trackerClick, indexUpdater, current }) => {
     return (
-      <button className={`btn btn--${type}`} title={title} onClick={handleClick}>
+      <button className={`btn btn--${type}`} title={title} onClick={()=>{indexUpdater(current); handleClick(); trackerClick();}}>
         <svg className="icon" viewBox="0 0 24 24">
           <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
         </svg>
@@ -87,7 +90,7 @@ const SliderControl = ({ type, title, handleClick }) => {
     )
   }
 
-  // =========================
+// =========================
 // Slider
 // =========================
 
@@ -140,7 +143,7 @@ class Slider extends React.Component {
       return (
         <div className='slider' aria-labelledby={headingId}>
           <ul className="slider__wrapper" style={wrapperTransform}>
-            <h3 id={headingId} class="visuallyhidden">{heading}</h3>
+            <h3 id={headingId} className="visuallyhidden">{heading}</h3>
             
             {slides.map(slide => {
               return (
@@ -149,6 +152,9 @@ class Slider extends React.Component {
                   slide={slide}
                   current={current}
                   handleSlideClick={this.handleSlideClick}
+                  modalHandle={this.props.modalHandle}
+                  modalHide={this.props.modalHide}
+                  indexUpdater={this.props.indexUpdater}
                 />
               )
             })}
@@ -157,14 +163,20 @@ class Slider extends React.Component {
           <div className="slider__controls">
             <SliderControl 
               type="previous"
+              current={current}
               title="Go to previous slide"
               handleClick={this.handlePreviousClick}
+              trackerClick={this.props.trackerPreviousClick}
+              indexUpdater={this.props.indexUpdater}
             />
             
             <SliderControl 
               type="next"
+              current={current}
               title="Go to next slide"
               handleClick={this.handleNextClick}
+              trackerClick={this.props.trackerNextClick}
+              indexUpdater={this.props.indexUpdater}
             />
           </div>
         </div>

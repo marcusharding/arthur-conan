@@ -1,0 +1,28 @@
+.slide--current {
+    .slide__overlay {
+        height: 100%;
+        width: 100%;
+        left: 0%;
+        top:0%;
+        position: absolute;
+        object-fit: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        opacity: 0;
+        z-index: 10;
+        transition: 100ms ease-in;
+        border-radius: 1%;
+        &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+            transform: 
+            scale(1.025)
+            // translate(
+            // calc(var(--x) / var(--d) * 1px),
+            // calc(var(--y) / var(--d) * 1px)
+            // );
+        }
+    }
+}

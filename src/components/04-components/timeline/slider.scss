@@ -134,15 +134,16 @@
   opacity: 1;
   pointer-events: auto;
   user-select: auto;
+  // transition: 200ms ease-in;
   
   @media (hover: hover) {
     &:hover .slide__image-wrapper {
       transform: 
         scale(1.025)
-        translate(
-          calc(var(--x) / var(--d) * 1px),
-          calc(var(--y) / var(--d) * 1px)
-        );
+        // translate(
+        //   calc(var(--x) / var(--d) * 1px),
+        //   calc(var(--y) / var(--d) * 1px)
+        // );
     }    
   }
 }
@@ -175,27 +176,28 @@
   user-select: none;
   width: 100%;
   
-  @media (hover: hover) {
-    .slide--current & {      
-      transform: 
-        translate(
-          calc(var(--x) / var(--d) * 1px),
-          calc(var(--y) / var(--d) * 1px)
-        ); 
-    }
-  }
+  // @media (hover: hover) {
+  //   .slide--current & {      
+  //     transform: 
+  //       translate(
+  //         calc(var(--x) / var(--d) * 1px),
+  //         calc(var(--y) / var(--d) * 1px)
+  //       ); 
+  //   }
+  // }
 }
 
 .slide__headline {
   position: relative;
   opacity: 0.8;
   margin: 0;
+  font-size: 1.5rem;
   @media (min-width: '1024px') {
-    font-size: 3rem;
-    font-weight: 200;
+    font-size: 2rem;
   }
 }
 .slide__date{
+  font-size: 2rem;
   @media (min-width: '1024px') {
     font-size: 3rem;
     font-weight: 600;
@@ -222,13 +224,13 @@
     animation: fade-in calc(var(--base-duration) / 2) var(--base-ease) forwards;
     visibility: visible;
     
-    @media (hover: hover) {
-      transform: 
-        translate(
-          calc(var(--x) / var(--d) * -1px),
-          calc(var(--y) / var(--d) * -1px)
-        );
-    }
+    // @media (hover: hover) {
+    //   transform: 
+    //     // translate(
+    //     //   calc(var(--x) / var(--d) * -1px),
+    //     //   calc(var(--y) / var(--d) * -1px)
+    //     // );
+    // }
   }
   
 }
