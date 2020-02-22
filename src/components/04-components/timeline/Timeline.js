@@ -132,9 +132,9 @@ export class Timeline extends React.Component {
           />
 
           {/** CREATING A CONTAINER TO BLUR ON MODAL OPEN */}
-          <div style={{...modalContainer, ...this.state.modalBlur < 0.1 ? blur: noBlur}}>
+          <div className="h-full" style={{...modalContainer, ...this.state.modalBlur < 0.1 ? blur: noBlur}}>
 
-            <div className="w-11/12 mx-auto py-12">
+            <div className="w-11/12 mx-auto py-6">
                 <p className="text-white text-3xl">Timeline</p>
             </div>
             <div className="w-11/12 mx-auto">
@@ -153,8 +153,6 @@ export class Timeline extends React.Component {
                 modalHide={this.modalHide}
                 indexUpdater={this.slideIndexUpdater}
                 />
-            </div>
-            <div className="wrapper text-center pt-20 relative">
             </div>
 
           </div>
