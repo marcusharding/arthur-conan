@@ -1,10 +1,14 @@
 import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-// import Map from 'pigeon-maps'
-// import Marker from 'pigeon-marker'
-// import Overlay from 'pigeon-overlay'
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 export class PortsmouthMap extends React.Component {
   constructor(props) {
@@ -14,24 +18,17 @@ export class PortsmouthMap extends React.Component {
       y: 0,
       id: null
     }
+    // this.mymap = null;
   }
 
 
   componentDidMount() {
-    this.getLocation()
-    var mymap = L.map('mapid').setView([this.state.x, this.state.y], 13);
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    accessToken: 'pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw'
-}).addTo(mymap);
-
+    this.getLocation();
   }
 
   componentWillUnmount() {
-      navigator.geolocation.clearWatch(this.id);
+      navigator.geolocation.clearWatch(this.state.id);
+      // this.mymap.remove();
   }
 
 
@@ -47,34 +44,39 @@ export class PortsmouthMap extends React.Component {
         this.setState({
           y: ylocation
         });
+        console.log(this.state.x);
+    //     this.mymap = L.map('mapid').setView([this.state.x, this.state.y], 13);
 
-      };
+    //     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    //     maxZoom: 18,
+    //     id: 'mapbox/streets-v11',
+    //     accessToken: 'pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw'
+    // }).addTo(this.mymap);
+    //   };
 
       const options = {enableHighAccuracy: true, maximumAge: 10000};
 
       this.id = navigator.geolocation.watchPosition(success, (err) => {console.error('ERROR(' + err.code + '): ' + err.message)}, options);
     }
   }
-
-
-
+}
 
 
 
   render(){
 
     return (
-      // <div className="responsive-map aspect-ratio">
-      // <Map className="map" center={[this.state.x, this.state.y]} zoom={16} >
-      //   <Marker anchor={[this.state.x, this.state.y]} payload={1} onClick={({ event, anchor, payload }) => {}} />
-    
-      //   <Overlay anchor={[this.state.x, this.state.y]} offset={[0, 0]}>
-      //   <p>x = {this.state.x}, y = {this.state.y}</p>
-      //   </Overlay>
-      // </Map>
-      // </div>
-      <div id="mapid" className="responsive-map"></div>
-    
+      // <div id="mapid" className="responsive-map"></div>
+      <Map center={[this.state.x, this.state.y]} zoom={13}>
+      <TileLayer
+        url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
+        attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
+      />
+      <Marker position={[this.state.x, this.state.y]}>
+        <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+      </Marker>
+    </Map>
     );
   }
 }
