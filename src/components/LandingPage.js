@@ -2,10 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import BgImage from '../assets/landing_background.jpg';
  
-const LandingPage = () => {
+export class LandingPage extends React.Component {
+  render() {
     return (
       <div className="header">
-        <img className="header_img" src={BgImage} />
+        <img alt="" className="header_img" src={BgImage} />
         <div className="z-10 text-center wrapper">
           <h1 className="header-text--primary header__title">Arthur Conan-Doyle</h1>
           <p className="header-text--secondary header__subheading">The best way to navigate the life of Arthur Conan-Doyle, lets get started</p>
@@ -16,6 +17,7 @@ const LandingPage = () => {
         </div>
       </div>
     );
+  }
 }
 
 export default LandingPage;
