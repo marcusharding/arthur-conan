@@ -23,3 +23,7 @@
     max-width: 1170px;
     width: 90%;
   }
+
+.tracker-transition {
+    transition: transform var(--base-duration) cubic-bezier(0.25, 1, 0.35, 1);
+}

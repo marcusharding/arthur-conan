@@ -3,7 +3,11 @@
 // BODY BASE COLOUR
 
 body {
-  background-color: #353A50;
+  background-color: #101118;
+}
+
+html, body {
+  height: 100%;
 }
 
 /*
@@ -51,26 +55,41 @@ img {
     background-color: currentColor;
   }
 
-/* APP COLOURS */
 
-.text-primary{
-    color: #353A50;
+/* BUTTONS */
+
+@mixin btn {
+  position: relative;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  padding: 10px 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 5px;
+  justify-content: center;
 }
 
-.bg-primary{
-    color: #353A50;
-}
-
-.btn{
-    padding: 8px 75px;
-    color: white;
-    border-radius: 5px;
+.btn {
+  @include btn;
 }
 
 .btn--primary{
-    background-color: #353A50;
+  color: white;
+  background-color: rgba(53, 58, 80, 1);
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: rgba(53, 58, 80, 0.5);
+  }
 }
 
 .btn--secondary{
-    background-color: #3ACCE1;
+  color: white;
+  background-color:rgba(58, 204, 225, 1);
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color:rgba(58, 204, 225, 0.5);
+  }
 }

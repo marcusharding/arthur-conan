@@ -14,7 +14,10 @@
 // TIMELINE
 @import './partials/timeline';
 
-// TAILWIND
+
+// # FRAMEWORK - http://sass-guidelin.es/#base-folder
+// ==========================================================================
+
 @import './framework/tailwind';
 
 //Nav scss
@@ -35,3 +38,4 @@
 @import './partials/Nav-scss/Backdrops.scss';
 
 
+@import './framework/animations';
