@@ -13,6 +13,8 @@ class Slide extends React.Component {
         this.handleSlideClick = this.handleSlideClick.bind(this)
         this.imageLoaded = this.imageLoaded.bind(this)
         this.slide = React.createRef()
+
+        this.state = { opacity: 0 }
       }
 
       handleMouseMove(event) {
@@ -32,9 +34,10 @@ class Slide extends React.Component {
         this.props.handleSlideClick(this.props.slide.index)
       }
 
-      imageLoaded(event) {
-        event.target.style.opacity = 1
+      imageLoaded = () => {
+        this.setState({ opacity: 1 })
       }
+      
       render() {
         const { src, headline, date, index } = this.props.slide
         const current = this.props.current
@@ -57,8 +60,9 @@ class Slide extends React.Component {
             style={slideMargin}
             >
               <div className="slide__image-wrapper">
-                <img 
+                <img
                     className="slide__image"
+                    style={{opacity: this.state.opacity}}
                     alt={headline}
                     src={src}
                     onLoad={this.imageLoaded}
@@ -155,6 +159,7 @@ class Slider extends React.Component {
                   modalHandle={this.props.modalHandle}
                   modalHide={this.props.modalHide}
                   indexUpdater={this.props.indexUpdater}
+                  // sliderImgOnLoad={this.props.sliderImgOnLoad}
                 />
               )
             })}

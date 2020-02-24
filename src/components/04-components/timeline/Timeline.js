@@ -1,9 +1,10 @@
-import React from 'react';
-import Slider from '../../02-teaser/Slider';
-import './timeline.scss';
-import './slider.scss';
-import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker';
-import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal';
+import React from 'react'
+import Slider from '../../02-teaser/slider/slider'
+import './timeline.scss'
+import '../../02-teaser/slider/slider.scss'
+import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker'
+import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
+import { Loading } from '../../01-global/loading'
 
 const slideData = [
     {
@@ -66,7 +67,13 @@ export class Timeline extends React.Component {
     this.modalHide = this.modalHide.bind(this);
     this.slideIndexUpdater = this.slideIndexUpdater.bind(this);
 
-    this.state = { trackerMargin: 0, slideIndex: 0, modalBlur: 1, modalHide: 'none'}
+    this.state = { trackerMargin: 0, slideIndex: 0, modalBlur: 1, modalHide: 'none', loading: false }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ loading: true })
+      }, 800);
   }
 
   slideIndexUpdater = (current) => {
@@ -121,6 +128,10 @@ export class Timeline extends React.Component {
 
      return (
         <React.Fragment>
+          {/* Loading component  */}
+          <Loading
+            state={this.state.loading}
+          />
           <section className="flex flex-col justify-center h-screen overflow-x-hidden">
 
           {/** TIMELINE MODAL */}
@@ -152,9 +163,9 @@ export class Timeline extends React.Component {
                 modalHandle={this.modalHandle}
                 modalHide={this.modalHide}
                 indexUpdater={this.slideIndexUpdater}
+                // sliderImgOnLoad={this.sliderImgOnLoad}
                 />
             </div>
-
           </div>
         </section>
       </React.Fragment>

@@ -19,3 +19,23 @@
 // ==========================================================================
 
 @import './framework/tailwind';
+
+//Nav scss
+
+//Navbar
+@import './partials/Nav-scss/Nav.scss';
+
+//Navbar_DrawerButton
+@import './partials/Nav-scss/DrawerButton.scss';
+
+//Navbar_sideDrawerButton
+@import './partials/Nav-scss/SideDrawerButton.scss';
+
+//Navbar_SideDrawer
+@import './partials/Nav-scss/SideDrawer.scss';
+
+//Site backdrop
+@import './partials/Nav-scss/Backdrops.scss';
+
+
+@import './framework/animations';
