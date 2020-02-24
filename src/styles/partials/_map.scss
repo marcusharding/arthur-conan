@@ -9,4 +9,10 @@
     overflow: hidden;
     height: 100vh;
   }
-  
+
+
+  @media only screen and (max-width: 640px) {
+    div.leaflet-bottom.leaflet-right {
+      display: none !important;
+    }
+  }
