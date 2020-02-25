@@ -23,7 +23,7 @@ export class PortsmouthMap extends React.Component {
       loading: false
     }
     this.userMarker = L.icon({
-      iconUrl: require('../assets/usermarker.png'),
+      iconUrl: require('../assets/images/usermarker.png'),
       iconSize: [20,20]
       });
   }

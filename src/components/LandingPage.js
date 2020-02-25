@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import BgImage from '../assets/landing_background.jpg';
+import BgImage from '../assets/images/landing_background.jpg';
 import { Loading } from '../components/01-global/loading'
 
 export class LandingPage extends React.Component {
