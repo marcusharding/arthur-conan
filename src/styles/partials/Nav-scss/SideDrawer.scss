@@ -8,9 +8,13 @@
     left: 0;
     width: 70%;
     max-width: 400px;
-    z-index: 200;
+    z-index: 1000;
     transform: translateX(-100%);
     transition: transform 0.3s ease-out;
+    display: block;
+    @media only screen and (min-width: 640px)  { 
+        display: block;
+    }
 }
 
 .side-drawer.open {

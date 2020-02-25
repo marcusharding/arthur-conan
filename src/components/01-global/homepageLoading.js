@@ -37,7 +37,7 @@ export class HomeLoading extends React.Component {
         }
 
        return(
-        <div className="h-screen flex absolute z-50 inset-0 bg-tertiary justify-center items-center" style={{...this.props.state.done === false ? loadingStyle : loadedStyle}}>
+        <div className="h-screen flex absolute z-2000 inset-0 bg-tertiary justify-center items-center" style={{...this.props.state.done === false ? loadingStyle : loadedStyle}}>
             {/* <ReactLoading type={"bars"} color={"white"} /> */}
             <FadeIn>
                 <div className="flex justify-center items-center">
