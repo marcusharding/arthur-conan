@@ -48,8 +48,9 @@ export class PortsmouthMap extends React.Component {
         });
         console.log(this.state.x);
     }
-    const options = {enableHighAccuracy: true, maximumAge: 10000};
-    this.id = navigator.geolocation.watchPosition(success, (err) => {console.error('ERROR(' + err.code + '): ' + err.message)}, options);
+    const options = {enableHighAccuracy: true, maximumAge: 0};
+    let locationid = navigator.geolocation.watchPosition(success, (err) => {console.error('ERROR(' + err.code + '): ' + err.message)}, options);
+    this.setState({id: locationid});
   } else {
     console.log("didnt work");
   }
@@ -60,7 +61,6 @@ export class PortsmouthMap extends React.Component {
   render(){
 
     return (
-      // <div id="mapid" className="responsive-map"></div>
         <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
         <TileLayer
           url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
