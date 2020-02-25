@@ -5,6 +5,7 @@ const src = 'https://picsum.photos/seed/picsum/1600/1600'
 
 export class TimelineModal extends React.Component {
     render() {
+
         return(
             <div style={this.props.modalHider} className="timeline-Modal__container bg-white">
                 <div className="close__container">

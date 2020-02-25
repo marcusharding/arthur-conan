@@ -45,17 +45,17 @@ export class App extends Component {
 }
 
   render() {
-    let backdrop;
-    if (this.state.sideDrawerOpen) {
-      backdrop = <Backdrop click={this.backdropClickHandler} />
-    }
+    // let backdrop;
+    // if (this.state.sideDrawerOpen) {
+    //   backdrop = <Backdrop click={this.backdropClickHandler} />
+    // }
     return (
       <Fragment>
         <BrowserRouter>
           <HomeLoading state={this.state} />
           <Nav drawerClickHandler={this.drawerToggleClickHandler} />
           <SideDrawer  sidedrawerClickHandler={this.sidedrawerToggleClickHandler}  show={this.state.sideDrawerOpen} />
-          { backdrop }
+          {/* { backdrop } */}
           <Switch>
             <Route path="/" component={LandingPage} exact/>
             <Route path="/Map" component={PortsmouthMap}/>

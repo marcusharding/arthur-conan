@@ -3,6 +3,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
 import { Loading } from '../components/01-global/loading'
+import { TimelineModal } from '../components/03-objects/timeline_modal/timeline_modal'
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -59,8 +61,6 @@ export class PortsmouthMap extends React.Component {
   }
 }
 
-
-
   render(){
 
     return (
@@ -78,7 +78,6 @@ export class PortsmouthMap extends React.Component {
           <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}>
           </Marker>
           <Marker position={[50.7906046, -1.0906947]}>
-            <Popup>1882 - Conan Doyle moves to Southsea, Portsmouth on the 24 June and sets up his own practice at Bush Villas, Elm Grove.</Popup>
           </Marker>
           <ZoomControl position="bottomright" />
         </Map>

@@ -67,7 +67,7 @@ export class Timeline extends React.Component {
     this.modalHide = this.modalHide.bind(this);
     this.slideIndexUpdater = this.slideIndexUpdater.bind(this);
 
-    this.state = { trackerMargin: 0, slideIndex: 0, modalBlur: 1, modalHide: 'none', loading: false }
+    this.state = { trackerMargin: 0, slideIndex: 0, modalBlur: 1, modalDisplay: 'none', loading: false }
   }
 
   componentDidMount() {
@@ -100,7 +100,7 @@ export class Timeline extends React.Component {
 
   // Toggle hiding and showing the modal on click
   modalHide = () => {
-    this.setState({modalHide: this.state.modalHide === 'none' ? this.setState.modalHide ='block': this.setState.modalHide = 'none'})
+    this.setState({modalDisplay: this.state.modalDisplay === 'none' ? this.setState.modalDisplay ='block': this.setState.modalDisplay = 'none'})
   }
   //  Toggle the opacity of the body beneath the modal onClick
   modalHandle = () => {
@@ -122,8 +122,8 @@ export class Timeline extends React.Component {
       filter: `blur(0px)`
     }
 
-    const modalHider = {
-      display: this.state.modalHide,
+    const modalDisplay = {
+      display: this.state.modalDisplay,
     }
 
      return (
@@ -136,13 +136,13 @@ export class Timeline extends React.Component {
 
           {/** TIMELINE MODAL */}
           <TimelineModal
-            modalHider={modalHider}
+            modalHider={modalDisplay}
             modalHide={this.modalHide}
             modalHandle={this.modalHandle}
             slides={slideData}
           />
 
-          {/** CREATING A CONTAINER TO BLUR ON MODAL OPEN */}
+          {/** CONTAINER TO BLUR ON MODAL OPEN */}
           <div className="h-full" style={{...modalContainer, ...this.state.modalBlur < 0.1 ? blur: noBlur}}>
 
             <div className="w-11/12 mx-auto py-6">
