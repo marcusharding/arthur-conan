@@ -2,6 +2,7 @@ import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
+import { Loading } from '../components/01-global/loading'
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -16,7 +17,8 @@ export class PortsmouthMap extends React.Component {
     this.state = {
       x: 0,
       y: 0,
-      id: null
+      id: null,
+      loading: false
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/usermarker.png'),
@@ -24,9 +26,11 @@ export class PortsmouthMap extends React.Component {
       });
   }
 
-
   componentDidMount() {
     this.getLocation();
+    setTimeout(() => {
+      this.setState({ loading: true })
+      }, 800);
   }
 
   componentWillUnmount() {
@@ -60,19 +64,25 @@ export class PortsmouthMap extends React.Component {
   render(){
 
     return (
-      // <div id="mapid" className="responsive-map"></div>
-        <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
-        <TileLayer
-          url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
-          attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
-        />
-        <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}>
-        </Marker>
-        <Marker position={[50.7906046, -1.0906947]}>
-          <Popup>1882 - Conan Doyle moves to Southsea, Portsmouth on the 24 June and sets up his own practice at Bush Villas, Elm Grove.</Popup>
-        </Marker>
-        <ZoomControl position="bottomright" />
-      </Map>
+        <React.Fragment>
+          {/* Loading component  */}
+          <Loading
+            state={this.state.loading}
+          />
+          {/* <div id="mapid" className="responsive-map"></div> */}
+          <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
+          <TileLayer
+            url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
+            attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
+          />
+          <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}>
+          </Marker>
+          <Marker position={[50.7906046, -1.0906947]}>
+            <Popup>1882 - Conan Doyle moves to Southsea, Portsmouth on the 24 June and sets up his own practice at Bush Villas, Elm Grove.</Popup>
+          </Marker>
+          <ZoomControl position="bottomright" />
+        </Map>
+      </React.Fragment>
     );
   }
 }

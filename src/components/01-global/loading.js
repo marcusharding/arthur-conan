@@ -16,7 +16,7 @@ export class Loading extends React.Component {
 
 
        return(
-        <div className="h-screen flex absolute z-40 inset-0 bg-tertiary justify-center items-center" style={{...this.props.state === false ? loadingStyle : loadedStyle}}>
+        <div className="h-screen flex absolute z-2000 inset-0 bg-tertiary justify-center items-center" style={{...this.props.state === false ? loadingStyle : loadedStyle}}>
             <ReactLoading type={"bars"} color={"white"} />
         </div>
        )

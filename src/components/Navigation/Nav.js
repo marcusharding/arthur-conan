@@ -8,13 +8,11 @@ const Nav = props => (
             <div className='nav-drawer-button'>
                 <DrawerButton click={props.drawerClickHandler} />
             </div>
-            <div className='toolbar_logo'><li>Arthur Conan-Doyle</li></div>
-            <div className='spacer'/>
             <div className='toolbar_nav-items'>
                 <ul>
-                <li><NavLink to='/'>Landing page</NavLink></li>
-                <li><NavLink to='/Map'>Map page</NavLink></li>
-                <li><NavLink to='/Timeline'>Timeline Page</NavLink></li>
+                    <li><NavLink to='/'>Homepage</NavLink></li>
+                    <li><NavLink to='/Map'>Map</NavLink></li>
+                    <li><NavLink to='/Timeline'>Timeline</NavLink></li>
                 </ul>
             </div>
         </nav>

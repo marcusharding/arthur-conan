@@ -12,7 +12,7 @@ const sideDrawer = props => {
             <SideDrawerButton click={props.sidedrawerClickHandler} />
         </div>
         <ul>
-            <li><NavLink to='/'>Landing</NavLink></li>
+            <li><NavLink to='/'>Homepage</NavLink></li>
             <li><NavLink to='/Map'>Map</NavLink></li>
             <li><NavLink to='/Timeline'>Timeline</NavLink></li>
         </ul>
