@@ -1,9 +1,7 @@
 // Buttons container
 
 .home-buttons__container{
-    padding-top: 100px;
     .btn{
-        margin-bottom: 45px;
         width: 240px;
         min-width: 240px;
         @media only screen and (min-width: 1024px)  {
