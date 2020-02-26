@@ -63,11 +63,10 @@ export class Timeline extends React.Component {
 
     this.trackerNextClick = this.trackerNextClick.bind(this);
     this.trackerPreviousClick = this.trackerPreviousClick.bind(this);
-    this.modalHandle = this.modalHandle.bind(this);
-    this.modalHide = this.modalHide.bind(this);
     this.slideIndexUpdater = this.slideIndexUpdater.bind(this);
+    this.onModalClick = this.onModalClick.bind(this);
 
-    this.state = { trackerMargin: 0, slideIndex: 0, modalBlur: 1, modalDisplay: 'none', loading: false }
+    this.state = { trackerMargin: 0, slideIndex: 0, bgBlur: 1, modalActive: false, loading: false }
   }
 
   componentDidMount() {
@@ -98,33 +97,24 @@ export class Timeline extends React.Component {
     } 
   }
 
-  // Toggle hiding and showing the modal on click
-  modalHide = () => {
-    this.setState({modalDisplay: this.state.modalDisplay === 'none' ? this.setState.modalDisplay ='block': this.setState.modalDisplay = 'none'})
-  }
-  //  Toggle the opacity of the body beneath the modal onClick
-  modalHandle = () => {
-    this.setState({modalBlur: this.state.modalBlur === 1 ? this.state.modalBlur - 0.9: this.state.modalBlur + 0.9})
+  // Toggle hiding and showing the modal on click + Bluring the background
+  onModalClick = () => {
+    this.setState((prevState) => {
+      return { modalActive: !prevState.modalActive };
+    });
+    this.setState({bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9: this.state.bgBlur + 0.9});
   }
 
    render() {
 
-    // Setting opacity for modalBlur state to control when modal is opened and closed
-    const modalContainer = {
-      opacity: this.state.modalBlur,
-
-    }
-
+    // Setting two variables to apply some style to blur and fade the background when modal is active / inactive
     const modalActive = {
       filter: `blur(10px)`,
+      opacity: this.state.bgBlur
     }
-
     const modalInactive = {
-      filter: `blur(0px)`
-    }
-
-    const modalDisplay = {
-      display: this.state.modalDisplay,
+      filter: `blur(0px)`,
+      opacity: this.state.bgBlur
     }
 
      return (
@@ -137,14 +127,12 @@ export class Timeline extends React.Component {
 
           {/** TIMELINE MODAL */}
             <TimelineModal
-              modalHider={modalDisplay}
-              modalHide={this.modalHide}
-              modalHandle={this.modalHandle}
-              slides={slideData}
+              modalActive={this.state.modalActive}
+              onModalClick={this.onModalClick}
             />
             
           {/** CONTAINER TO BLUR ON MODAL OPEN */}
-          <section className="h-full flex flex-col justify-center" style={{...modalContainer, ...this.state.modalBlur < 0.1 ? modalActive: modalInactive}}>
+          <section className="h-full flex flex-col justify-center" style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
 
             <div className="w-11/12 mx-auto pb-2">
                 <p className="text-white text-3xl">Timeline</p>
@@ -161,10 +149,8 @@ export class Timeline extends React.Component {
                 slides={slideData}
                 trackerNextClick={this.trackerNextClick}
                 trackerPreviousClick={this.trackerPreviousClick}
-                modalHandle={this.modalHandle}
-                modalHide={this.modalHide}
+                onModalClick={this.onModalClick}
                 indexUpdater={this.slideIndexUpdater}
-                // sliderImgOnLoad={this.sliderImgOnLoad}
                 />
             </div>
           </section>

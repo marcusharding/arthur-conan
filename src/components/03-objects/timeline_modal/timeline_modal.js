@@ -7,9 +7,9 @@ export class TimelineModal extends React.Component {
     render() {
 
         return(
-            <div style={this.props.modalHider} className="timeline-Modal__container bg-white">
+            <div className={`timeline-Modal__container bg-white ${this.props.modalActive === false ? 'hidden' : 'block'}`}>
                 <div className="close__container">
-                    <button onClick={()=>{this.props.modalHandle(); this.props.modalHide()}} className="close"></button>
+                    <button onClick={this.props.onModalClick} className="close"></button>
                 </div>
                 <div className="responsive-img aspect-ratio">
                     <img alt="" src={src} ></img>

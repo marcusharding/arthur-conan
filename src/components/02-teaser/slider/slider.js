@@ -71,7 +71,7 @@ class Slide extends React.Component {
               <article className="slide__content">
                 <h1 className="slide__date">{date}</h1>
                 <h2 className="slide__headline">{headline}</h2>
-                <div onClick={()=>{this.props.modalHandle(); this.props.modalHide()}} className="slide__overlay">
+                <div onClick={this.props.onModalClick} className="slide__overlay">
                   <button className="font-bold text-2xl">Read More</button>
                 </div>
               </article>
@@ -156,10 +156,8 @@ class Slider extends React.Component {
                   slide={slide}
                   current={current}
                   handleSlideClick={this.handleSlideClick}
-                  modalHandle={this.props.modalHandle}
-                  modalHide={this.props.modalHide}
+                  onModalClick={this.props.onModalClick}
                   indexUpdater={this.props.indexUpdater}
-                  // sliderImgOnLoad={this.props.sliderImgOnLoad}
                 />
               )
             })}
