@@ -15,10 +15,10 @@ export class TimelineModal extends React.Component {
                     <img alt="" src={src} ></img>
                 </div>
                 <div className="p-4">
-                    <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">Conan Doyle leaves for portsmouth</h1>
-                    <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">1882</p>
+                    <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">Arthur Conan-Doyle is born</h1>
+                    <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">1859</p>
                     <hr className="lg:pb-2"></hr>
-                    <p className="text-offBlack lg:text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla libero massa, commodo in suscipit quis, semper id erat. Duis vehicula, lacus vestibulum sagittis dictum, libero orci ornare dui, sit amet hendrerit mi nulla vitae ex</p>
+                    <p className="text-offBlack lg:text-xl">Doyle was born on 22 May 1859 at 11 Picardy Place, Edinburgh, Scotland. His father, Charles Altamont Doyle, was born in England, of Irish Catholic descent, and his mother, Mary (née Foley), was Irish Catholic. His parents married in 1855.</p>
                 </div>
             </div>
         )

@@ -35,7 +35,7 @@ class Slide extends React.Component {
       }
 
       imageLoaded = () => {
-        this.setState({ opacity: 1 })
+        this.setState({ opacity: 0.3 })
       }
       
       render() {
@@ -70,7 +70,7 @@ class Slide extends React.Component {
               </div>
               <article className="slide__content">
                 <h1 className="slide__date">{date}</h1>
-                <h2 className="slide__headline">{headline}</h2>
+                <h2 className="slide__headline text-white">{headline}</h2>
                 <div onClick={this.props.onModalClick} className="slide__overlay">
                   <button className="font-bold text-2xl">Read More</button>
                 </div>

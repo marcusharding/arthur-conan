@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import DrawerButton from './DrawerButton';
 
 const Nav = props => (
-    <header className='toolbar'>
+    <header className={`${props.sideDrawerOpen === false ? 'block' : 'hidden'} toolbar`} >
         <nav className='toolbar_nav'>
             <div className='nav-drawer-button'>
                 <DrawerButton click={props.drawerClickHandler} />

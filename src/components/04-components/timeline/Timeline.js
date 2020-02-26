@@ -5,49 +5,56 @@ import '../../02-teaser/slider/slider.scss'
 import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker'
 import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
 import { Loading } from '../../01-global/loading'
+import ACD1 from '../../../assets/images/arthurs_life/acd_1.jpg'
+import ACD2 from '../../../assets/images/arthurs_life/acd_2.jpg'
+import ACD3 from '../../../assets/images/arthurs_life/acd_3.jpg'
+import ACD4 from '../../../assets/images/arthurs_life/acd_4.jpg'
+import ACD5 from '../../../assets/images/arthurs_life/acd_5.jpg'
+import ACD6 from '../../../assets/images/arthurs_life/acd_6.JPG'
+import ACD7 from '../../../assets/images/arthurs_life/acd_7.jpg'
 
 const slideData = [
     {
       index: 0,
-      date: '1882',
-      headline: 'Conan Doyle leaves for Portsmouth',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1859',
+      headline: 'Arthur Conan-Doyle is born',
+      src: ACD1
     },
     {
       index: 1,
-      date: '1883',
-      headline: 'In The Wilderness',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1882',
+      headline: 'Conan Doyle leaves for Portsmouth to establish his own medical practice.',
+      src: ACD2
     },
     {
       index: 2,
-      date: '1884',
-      headline: 'For Your Current Mood',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1883',
+      headline: 'He joins the Portsmouth Literary and Scientific Society.',
+      src: ACD3
     },
     {
       index: 3,
-      date: '1885',
-      headline: 'Focus On The Writing',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1884',
+      headline: 'J. Habakuk Jephson’s Statement is published.',
+      src: ACD4
     },
     {
       index: 4,
-      date: '1884',
-      headline: 'For Your Current Mood',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1885',
+      headline: 'On August 5th, Conan Doyle marries Louise “Toulie” Hawkins.',
+      src: ACD5
     },
     {
       index: 5,
-      date: '1885',
-      headline: 'Focus On The Writing',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1887',
+      headline: 'Study in scarlett published in beetons christmas annual',
+      src: ACD6
     },
     {
       index: 6,
-      date: '1885',
-      headline: 'Focus On The Writing',
-      src: 'https://picsum.photos/seed/picsum/1600/1600'
+      date: '1888',
+      headline: 'A Study in Scarlet, the first Sherlock Holmes story,  is published as a book.',
+      src: ACD7
     }
   ]
 

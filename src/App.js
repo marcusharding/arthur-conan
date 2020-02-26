@@ -7,7 +7,6 @@ import Error from './components/Error'
 import { HomeLoading } from '../src/components/01-global/homepageLoading'
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
-import Backdrop from './components/Navigation/Backdrop';
 
 
 export class App extends Component {
@@ -45,23 +44,35 @@ export class App extends Component {
 }
 
   render() {
-    // let backdrop;
-    // if (this.state.sideDrawerOpen) {
-    //   backdrop = <Backdrop click={this.backdropClickHandler} />
-    // }
+
+    // Setting two variables to apply some style to blur and fade the background when sideDraw is active / inActive 
+    const sideMenuActive = {
+      filter: `blur(10px)`,
+      opacity: 0.1,
+    }
+    const sideMenuInactive = {
+      filter: `blur(0px)`,
+      opacity: 1,
+    }
+
     return (
       <Fragment>
+
         <BrowserRouter>
           <HomeLoading state={this.state} />
-          <Nav drawerClickHandler={this.drawerToggleClickHandler} />
+          <Nav 
+            sideDrawerOpen={this.state.sideDrawerOpen}
+            drawerClickHandler={this.drawerToggleClickHandler} 
+          />
           <SideDrawer  sidedrawerClickHandler={this.sidedrawerToggleClickHandler}  show={this.state.sideDrawerOpen} />
-          {/* { backdrop } */}
-          <Switch>
-            <Route path="/" component={LandingPage} exact/>
-            <Route path="/Map" component={PortsmouthMap}/>
-            <Route path="/Timeline" component={Timeline}/>
-            <Route component={Error}/>
-          </Switch> 
+          <div className="h-full w-full" style={{...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive}}>
+            <Switch>
+              <Route path="/" component={LandingPage} exact/>
+              <Route path="/Map" component={PortsmouthMap}/>
+              <Route path="/Timeline" component={Timeline}/>
+              <Route component={Error}/>
+            </Switch> 
+          </div>
         </BrowserRouter>
       </Fragment>
     );
