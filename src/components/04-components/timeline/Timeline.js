@@ -112,13 +112,14 @@ export class Timeline extends React.Component {
     // Setting opacity for modalBlur state to control when modal is opened and closed
     const modalContainer = {
       opacity: this.state.modalBlur,
+
     }
 
-    const blur = {
-      filter: `blur(10px)`
+    const modalActive = {
+      filter: `blur(10px)`,
     }
 
-    const noBlur = {
+    const modalInactive = {
       filter: `blur(0px)`
     }
 
@@ -132,23 +133,23 @@ export class Timeline extends React.Component {
           <Loading
             state={this.state.loading}
           />
-          <section className="flex flex-col justify-center h-screen overflow-x-hidden">
+          <section className='flex flex-col justify-center h-screen overflow-x-hidden'>
 
           {/** TIMELINE MODAL */}
-          <TimelineModal
-            modalHider={modalDisplay}
-            modalHide={this.modalHide}
-            modalHandle={this.modalHandle}
-            slides={slideData}
-          />
-
+            <TimelineModal
+              modalHider={modalDisplay}
+              modalHide={this.modalHide}
+              modalHandle={this.modalHandle}
+              slides={slideData}
+            />
+            
           {/** CONTAINER TO BLUR ON MODAL OPEN */}
-          <div className="h-full" style={{...modalContainer, ...this.state.modalBlur < 0.1 ? blur: noBlur}}>
+          <section className="h-full flex flex-col justify-center" style={{...modalContainer, ...this.state.modalBlur < 0.1 ? modalActive: modalInactive}}>
 
-            <div className="w-11/12 mx-auto py-6">
+            <div className="w-11/12 mx-auto pb-2">
                 <p className="text-white text-3xl">Timeline</p>
             </div>
-            <div className="w-11/12 mx-auto">
+            <div className="w-11/12 mx-auto mb-6">
               <TimelineTracker
                 trackerLength={trackerLength}
                 trackerMargin={this.state.trackerMargin}
@@ -166,7 +167,7 @@ export class Timeline extends React.Component {
                 // sliderImgOnLoad={this.sliderImgOnLoad}
                 />
             </div>
-          </div>
+          </section>
         </section>
       </React.Fragment>
      );

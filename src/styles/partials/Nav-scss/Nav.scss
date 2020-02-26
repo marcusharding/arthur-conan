@@ -5,7 +5,7 @@
     top: 0;
     width:100%;
     background: #2A2E43;
-    height: 56px;
+    height: auto;
     z-index: 1000;
 }
 
@@ -14,6 +14,8 @@
     height: 100%;
     align-items: center;
     width: 90%;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
     margin-left: auto;
     margin-right: auto;
     justify-content: flex-start;

@@ -1,17 +1,22 @@
 .timeline-Modal__container {
     position: absolute;
-    width: 25%;
     height: auto;
+    width: 90%;
     z-index: 30;
     border-radius: 2%;
     left: 50%;
-    margin-left: -12.5%;
+    margin-left: -45%;
     img {
       border-top-left-radius: 2%;
       border-top-right-radius: 2%;
     }
     hr {
       border-color: #a0aec0;
+    }
+    @media (min-width: '1024px') {
+      width: 25%;
+      left: 50%;
+      margin-left: -12.5%;
     }
 }
 
@@ -24,8 +29,9 @@
     align-items: center;
     border-radius: 50%;
     margin-left: auto;
-    top: -10%;
-    right: 0%;
+    top: -2%;
+    right: 3%;
+    z-index: inherit;
 }
 
 .close {

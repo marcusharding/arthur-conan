@@ -14,9 +14,8 @@ export class TimelineTracker extends React.Component {
         }
 
         return(
-            <div className="timelineTracker__container mb-12">
+            <div className="timelineTracker__container">
                 <div style={{...trackerMargin,...trackerWidth}} className="timelineTracker__marker bg-secondary tracker-transition">
-
                 </div>
             </div>
         )

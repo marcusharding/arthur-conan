@@ -14,11 +14,11 @@ export class TimelineModal extends React.Component {
                 <div className="responsive-img aspect-ratio">
                     <img alt="" src={src} ></img>
                 </div>
-                <div className="wrapper">
-                    <h1 className="text-offBlack text-xl font-semibold pt-4">Conan Doyle leaves for portsmouth</h1>
-                    <p className="text-offBlack text-3xl uppercase font-bold pb-4">1882</p>
-                    <hr></hr>
-                    <p className="text-offBlack text-xl py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla libero massa, commodo in suscipit quis, semper id erat. Duis vehicula, lacus vestibulum sagittis dictum, libero orci ornare dui, sit amet hendrerit mi nulla vitae ex</p>
+                <div className="p-4">
+                    <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">Conan Doyle leaves for portsmouth</h1>
+                    <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">1882</p>
+                    <hr className="lg:pb-2"></hr>
+                    <p className="text-offBlack lg:text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla libero massa, commodo in suscipit quis, semper id erat. Duis vehicula, lacus vestibulum sagittis dictum, libero orci ornare dui, sit amet hendrerit mi nulla vitae ex</p>
                 </div>
             </div>
         )
