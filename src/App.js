@@ -11,14 +11,14 @@ import SideDrawer from './components/Navigation/SideDrawer';
 
 export class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-       loading: false,
-       done: false,
-       sideDrawerOpen: false,
+      loading: false,
+      done: false,
+      sideDrawerOpen: false,
     }
- }
+  }
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -34,14 +34,16 @@ export class App extends Component {
     this.setState({ sideDrawerOpen: false });
   };
 
- componentDidMount() {
-  setTimeout(() => {
+
+  componentDidMount() {
+    this.setState({ sideDrawerOpen: false });
+    setTimeout(() => {
       this.setState({ loading: true });
-  }, 1000);
-  setTimeout(() => {
+    }, 1000);
+    setTimeout(() => {
       this.setState({ done: true });
-  }, 2000);
-}
+    }, 2000);
+  }
 
   render() {
 
@@ -60,18 +62,18 @@ export class App extends Component {
 
         <BrowserRouter>
           <HomeLoading state={this.state} />
-          <Nav 
+          <Nav
             sideDrawerOpen={this.state.sideDrawerOpen}
-            drawerClickHandler={this.drawerToggleClickHandler} 
+            drawerClickHandler={this.drawerToggleClickHandler}
           />
-          <SideDrawer  sidedrawerClickHandler={this.sidedrawerToggleClickHandler}  show={this.state.sideDrawerOpen} />
-          <div className="h-full w-full" style={{...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive}}>
+          <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
+          <div onClick={this.backdropClickHandler} className="h-full w-full" style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
             <Switch>
-              <Route path="/" component={LandingPage} exact/>
-              <Route path="/Map" component={PortsmouthMap}/>
-              <Route path="/Timeline" component={Timeline}/>
-              <Route component={Error}/>
-            </Switch> 
+              <Route path="/" component={LandingPage} exact />
+              <Route path="/Map" component={PortsmouthMap} />
+              <Route path="/Timeline" component={Timeline} />
+              <Route component={Error} />
+            </Switch>
           </div>
         </BrowserRouter>
       </Fragment>
