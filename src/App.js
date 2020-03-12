@@ -36,7 +36,7 @@ export class App extends Component {
 
 
   componentDidMount() {
-    this.setState({ sideDrawerOpen: false });
+    this.backdropClickHandler();
     setTimeout(() => {
       this.setState({ loading: true });
     }, 1000);
