@@ -18,7 +18,7 @@ export class TimelineModal extends React.Component {
                     <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">Arthur Conan-Doyle is born</h1>
                     <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">1859</p>
                     <hr className="lg:pb-2"></hr>
-                    <p className="text-offBlack lg:text-xl">Doyle was born on 22 May 1859 at 11 Picardy Place, Edinburgh, Scotland. His father, Charles Altamont Doyle, was born in England, of Irish Catholic descent, and his mother, Mary (née Foley), was Irish Catholic. His parents married in 1855.</p>
+                    <p className="text-offBlack lg:text-xl">{this.props.slides.text}</p>
                 </div>
             </div>
         )
