@@ -12,7 +12,7 @@ export class TimelineModal extends React.Component {
                     <button onClick={this.props.onModalClick} className="close"></button>
                 </div>
                 <div className="responsive-img aspect-ratio">
-                    <img alt="" src={src} ></img>
+                    <img alt={this.props.slides.headline} src={src} ></img>
                 </div>
                 <div className="p-4">
                     <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">Arthur Conan-Doyle is born</h1>
