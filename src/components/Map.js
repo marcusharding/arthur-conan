@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
 import { Loading } from '../components/01-global/loading'
 import { TimelineModal } from '../components/03-objects/timeline_modal/timeline_modal'
+import {slideData} from '../components/04-components/timeline/timelineData'
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -95,10 +96,16 @@ export class PortsmouthMap extends React.Component {
 
         <section className="flex justify-center items-center">
           {/* Modal to open on marker click */}
-          <TimelineModal
-            modalActive={this.state.modalActive}
-            onModalClick={this.onMarkerClick}
-          />
+          {slideData.map(slide => {
+              return (
+                <TimelineModal
+                  modalActive={this.state.modalActive}
+                  onModalClick={this.onMarkerClick}
+                  slides={slide}
+                  index={this.state.slideIndex}
+                />
+              )
+            })}
 
           {/* Containing div to blur the map when modal is active */}
           <div className="h-screen relative w-full" style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
