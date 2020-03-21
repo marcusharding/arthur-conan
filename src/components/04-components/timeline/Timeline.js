@@ -11,18 +11,17 @@ import {slideData} from './timelineData'
 // Getting length of tracker by dividing 100 by number of slides
 const trackerLength = 100 / slideData.length
 
-
-
 export class Timeline extends React.Component {
   constructor(props) {
     super(props);
 
-    this.trackerNextClick = this.trackerNextClick.bind(this);
-    this.trackerPreviousClick = this.trackerPreviousClick.bind(this);
-    this.slideIndexUpdater = this.slideIndexUpdater.bind(this);
     this.onModalClick = this.onModalClick.bind(this);
+    this.handlePreviousClick = this.handlePreviousClick.bind(this);
+    this.handleNextClick = this.handleNextClick.bind(this);
+    this.handleSlideClick = this.handleSlideClick.bind(this);
+    this.handleTrackerNext = this.handleTrackerNext.bind(this);
 
-    this.state = { trackerMargin: 0, slideIndex: 0, bgBlur: 1, modalActive: false, loading: false }
+    this.state = { trackerMargin: 0, current: 0, bgBlur: 1, modalActive: false, loading: false }
   }
 
   componentDidMount() {
@@ -31,27 +30,56 @@ export class Timeline extends React.Component {
       }, 800);
   }
 
-  slideIndexUpdater = (current) => {
-
-    this.setState({ slideIndex: current })
-    console.log(current)
+  // Previous click function for the slide button 
+  handlePreviousClick() {
+    const previous = this.state.current - 1
+    this.setState({ 
+      current: (previous < 0) 
+        ? slideData.length - 1
+        : previous
+    })
   }
 
-  // Function to control the margin of the tracker on each next button click
-  trackerNextClick = () => {
-    this.setState({ trackerMargin: this.state.trackerMargin + trackerLength })
+  // Next click function for slide button
+  handleNextClick() {
+    const next = this.state.current + 1;
+    this.setState({ 
+      current: (next === slideData.length) 
+        ? 0
+        : next
+    })
+  }
+
+  // Click function for on the slide
+  handleSlideClick(index) {
+    if (this.state.current !== index) {
+      this.setState({
+        current: index
+      })
+    }
+  }
+
+  // Updating timeline tracker on slider increment
+  handleTrackerNext = () => {
+    this.setState({ 
+      trackerMargin: (this.state.current === 0)
+      ? this.state.current + trackerLength
+      : this.state.trackerMargin + trackerLength
+    })
     if(this.state.trackerMargin > 100 - trackerLength * 2) {
       this.setState({trackerMargin: 0})
     }
   }
 
-  // Function to control the margin of the tracker on the previous button click
-  trackerPreviousClick = () => {
-    this.setState({ trackerMargin: this.state.trackerMargin - trackerLength })
-    if(this.state.trackerMargin < Math.round(trackerLength)) {
-      this.setState({trackerMargin: 100 - trackerLength})
-    } 
+  // Updating timeline tracker on slider decrement
+  handleTrackerPrev = () => {
+    this.setState({
+      trackerMargin: (this.state.current === 0)
+      ? trackerLength * slideData.length - trackerLength
+      : this.state.trackerMargin - trackerLength
+    })
   }
+
 
   // Toggle hiding and showing the modal on click + Bluring the background
   onModalClick = () => {
@@ -87,7 +115,8 @@ export class Timeline extends React.Component {
                   modalActive={this.state.modalActive}
                   onModalClick={this.onModalClick}
                   slides={slide}
-                  index={this.state.slideIndex}
+                  key={slide.index}
+                  current={this.state.current}
                 />
               )
             })}
@@ -107,11 +136,14 @@ export class Timeline extends React.Component {
             <div className="w-11/12 mx-auto">
                 <Slider
                 heading="Example Slider"
+                current={this.state.current}
                 slides={slideData}
-                trackerNextClick={this.trackerNextClick}
-                trackerPreviousClick={this.trackerPreviousClick}
+                handlePreviousClick={this.handlePreviousClick}
+                handleNextClick={this.handleNextClick}
+                handleSlideClick={this.handleSlideClick}
                 onModalClick={this.onModalClick}
-                indexUpdater={this.slideIndexUpdater}
+                handleTrackerNext={this.handleTrackerNext}
+                handleTrackerPrev={this.handleTrackerPrev}
                 />
             </div>
           </section>
