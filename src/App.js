@@ -20,16 +20,6 @@ export class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ sideDrawerOpen: false });
-    setTimeout(() => {
-      this.setState({ loading: true });
-    }, 1000);
-    setTimeout(() => {
-      this.setState({ done: true });
-    }, 2000);
-  }
-
   // Function to control opening the sideDrawer
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -47,6 +37,16 @@ export class App extends Component {
     this.setState({ sideDrawerOpen: false });
   };
 
+
+  componentDidMount() {
+    this.backdropClickHandler();
+    setTimeout(() => {
+      this.setState({ loading: true });
+    }, 1000);
+    setTimeout(() => {
+      this.setState({ done: true });
+    }, 2000);
+  }
 
   render() {
 
