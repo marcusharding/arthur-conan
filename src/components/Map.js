@@ -23,7 +23,8 @@ export class PortsmouthMap extends React.Component {
       id: null,
       loading: false,
       bgBlur: 1, 
-      modalActive: false
+      modalActive: false,
+      current: null
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
@@ -34,11 +35,13 @@ export class PortsmouthMap extends React.Component {
   }
 
   // Function to control marker click and toggle modal display + bg blur
-  onMarkerClick = () => {
+  onMarkerClick = (index) => {
     this.setState((prevState) => {
       return { modalActive: !prevState.modalActive };
     });
     this.setState({bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9: this.state.bgBlur + 0.9});
+
+    this.setState({current: index})
   }
 
   componentDidMount() {
@@ -102,7 +105,8 @@ export class PortsmouthMap extends React.Component {
                   modalActive={this.state.modalActive}
                   onModalClick={this.onMarkerClick}
                   slides={slide}
-                  index={this.state.slideIndex}
+                  key={slide.index}
+                  current={this.state.current}
                 />
               )
             })}
@@ -115,9 +119,11 @@ export class PortsmouthMap extends React.Component {
                 attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               />
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
-              <Marker onClick={this.onMarkerClick} position={[50.7906046, -1.0906947]}>
-                
-              </Marker>
+              {slideData.map(slide => {
+                return (
+                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={()=>{this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
+                )
+              })} 
               <ZoomControl position="bottomright" />
             </Map>
           </div>

@@ -18,21 +18,27 @@ const slideData = [
       date: '1859',
       headline: 'Arthur Conan-Doyle is born',
       text: 'Doyle was born on 22 May 1859 at 11 Picardy Place, Edinburgh, Scotland. His father, Charles Altamont Doyle, was born in England, of Irish Catholic descent, and his mother, Mary née Foley, was Irish Catholic. His parents married in 1855. Before moving to Portsmouth Arthur was a student at the University of Edinburgh Medical School. He served as ship\'s surgeon on the Greenland whaler Hope before being awarded a Bachelor of Medicine and Masters of Surgery.',
-      src: ACD1
+      src: ACD1,
+      positionA: 55.969768,
+      positionB: -3.190705
     },
     {
       index: 1,
       date: '1882',
       headline: 'Conan Doyle arrived in Portsmouth to establish his own medical practice.',
       text: 'Sir Arthur Conan Doyle wrote his first two Sherlock Holmes stories while living in Portsmouth where he had arrived in 1882 to set up a doctor’s practice at 1 Bush Villas, Elm Grove, Southsea.  The stories were A Study in Scarlet, published in 1887, and The Sign of Four, 1890. More stories soon followed. It wasn\'t long before Doyle found himself more successful as a writer than as a doctor. He felt at home in Portsmouth  - a city with literary connections; other residents have included Charles Dickens, Rudyard Kipling and H G Wells.',
-      src: ACD2
+      src: ACD2,
+      positionA: 50.786000,
+      positionB: -1.101455
     },
     {
       index: 2,
       date: '1883',
-      headline: 'He joined the Portsmouth Literary and Scientific Society.',
-      text: 'Conan Doyle threw himself into the life of the town. He joined the Portsmouth Literary and Scientific Society, and gave public talks on Edward Gibbon, Thomas Carlyle, and George Meredith, among others. He also played for the local cricket and bowls teams, and was the first goalkeeper for the team that became Portsmouth Football Club.',
-      src: ACD3
+      headline: 'Became first goalkeeper for the team that became Portsmouth Football Club.',
+      text: 'He played for the local cricket and bowls teams, and was the first goalkeeper for the team that became Portsmouth Football Club. Conan Doyle threw himself into the life of the town. He joined the Portsmouth Literary and Scientific Society, and gave public talks on Edward Gibbon, Thomas Carlyle, and George Meredith, among others.',
+      src: ACD3,
+      positionA: 50.796525,
+      positionB: -1.063766
     },
     {
       index: 3,
@@ -68,6 +74,8 @@ const slideData = [
       headline: 'Mary, the first child of Conan Doyle, is born.',
       text: 'Mary Louise Conan Doyle aka Toots (28 January 1889 - 12 June 1976) was the daughter and first child of Arthur Conan Doyle and Louisa Hawkins. She had a direct younger brother Kingsley and 3 half-siblings Denis, Adrian and Jean (Lena) from the second marriage of her father. Mary, aged 9, wrote A Visit to Heaven which her father published privately in 200 copies. She worked as a journalist and musician.',
       src: ACD8,
+      positionA: 50.790482,
+      positionB: -1.090724
     },
     {
       index: 8,
@@ -100,9 +108,11 @@ const slideData = [
     {
       index: 12,
       date: '1930',
-      headline: 'Sir Arthur Conan Doyle died on July 7.  He is buried at the rose garden in Windlesham.',
+      headline: 'Sir Arthur Conan Doyle died on July 7. He is buried at the rose garden in Windlesham.',
       text: 'Sir Arthur Conan Doyle died of a heart attack at his home in Crowborough on July 7th 1930. He was found slumped against a wall, clutching his chest. Popular anecdote suggests his last words were for Jean, to whom he said "You are wonderful!" Due to his divided religious beliefs, it was decided to bury Sir Arthur in the Rose Garden of WIndlesham Manor, his home. Later when Jean passed away, he was reinterred and placed to rest with her, in Minstead Churchyard, New Forest.',
       src: ACD13,
+      positionA: 50.896892,
+      positionB: -1.601703
     }
   ]
 

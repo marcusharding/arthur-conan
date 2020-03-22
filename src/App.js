@@ -20,21 +20,6 @@ export class App extends Component {
     }
   }
 
-  drawerToggleClickHandler = () => {
-    this.setState((prevState) => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
-  };
-
-  sidedrawerToggleClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
-  }
-
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
-  };
-
-
   componentDidMount() {
     this.setState({ sideDrawerOpen: false });
     setTimeout(() => {
@@ -44,6 +29,24 @@ export class App extends Component {
       this.setState({ done: true });
     }, 2000);
   }
+
+  // Function to control opening the sideDrawer
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    });
+  };
+
+  // Function to close the sideDrawer on button click
+  sidedrawerToggleClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  }
+
+  // Function to close sideDrawer when clicking on the body
+  backdropClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  };
+
 
   render() {
 

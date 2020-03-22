@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^1.3.0",
+    "@fullhuman/postcss-purgecss": "^2.1.0",
     "autoprefixer": "^9.7.2",
     "bootstrap": "^4.4.1",
     "leaflet": "^1.6.0",
@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "build:styles": " postcss src/styles/framework/_tailwind.scss -o src/styles/index.css",
     "prebuild": "NODE_ENV=production yarn build:styles",
-    "prestart": "yarn build:styles"
+    "prestart": "yarn build:styles",
+    "postbuild": "purgecss --css build/static/css/*.css --content build/static/index.html build/static/js/*.js --output build/static/css"
   },
   "eslintConfig": {
     "extends": "react-app"
