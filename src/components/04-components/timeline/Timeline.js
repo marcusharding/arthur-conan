@@ -122,7 +122,7 @@ export class Timeline extends React.Component {
             })}
             
           {/** CONTAINER TO BLUR ON MODAL OPEN */}
-          <section className="h-full flex flex-col justify-center" style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
+          <section className={`h-full flex flex-col justify-center ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
 
             <div className="w-11/12 mx-auto pb-2">
                 <p className="text-white text-3xl">Timeline</p>

@@ -54,7 +54,7 @@ class Slide extends React.Component {
             <li 
             ref={this.slide}
             className={classNames} 
-            onClick={()=>{this.handleSlideClick(); this.props.handleTrackerUpdate();}}
+            onClick={(e)=>{this.handleSlideClick(); current === index ? e.preventDefault(): this.props.handleTrackerUpdate();}}
             onMouseMove={this.handleMouseMove}
             onMouseLeave={this.handleMouseLeave}
             style={slideMargin}

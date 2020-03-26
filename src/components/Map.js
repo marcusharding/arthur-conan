@@ -112,7 +112,7 @@ export class PortsmouthMap extends React.Component {
             })}
 
           {/* Containing div to blur the map when modal is active */}
-          <div className="h-screen relative w-full" style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
+          <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
               <TileLayer
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
@@ -121,7 +121,7 @@ export class PortsmouthMap extends React.Component {
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
               {slideData.map(slide => {
                 return (
-                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={()=>{this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
+                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault(): this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
                 )
               })} 
               <ZoomControl position="bottomright" />

@@ -132,18 +132,13 @@
   --d: 50;
 
   opacity: 1;
-  pointer-events: auto;
+  // pointer-events: auto;
   user-select: auto;
-  // transition: 200ms ease-in;
   
   @media (hover: hover) {
     &:hover .slide__image-wrapper {
       transform: 
         scale(1.025)
-        // translate(
-        //   calc(var(--x) / var(--d) * 1px),
-        //   calc(var(--y) / var(--d) * 1px)
-        // );
     }    
   }
 }
