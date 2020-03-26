@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import BgImage from '../assets/images/landing_background.jpg';
-import { Loading } from '../components/01-global/loading'
 
 export class LandingPage extends React.Component {
 
@@ -19,15 +18,11 @@ export class LandingPage extends React.Component {
 }
 
   render() {
-
     return (
       <React.Fragment>
         {/* Loading component  */}
-        <Loading
-            state={this.state.loading}
-          />
         <div className="header">
-          <img alt="Landing Page Background" className="header_img opacity-25" src={BgImage} />
+          <img alt="Landing Page Background" className="header_img opacity-25" onLoad={this.props.appOnLoad} src={BgImage} />
           <div className="z-10 text-center wrapper">
             <h2 className="font-gabriela text-white text-2xl lg:text-4xl">The life of</h2>
             <h1 className="font-gabriela text-white text-3xl lg:text-6xl pb-6">Arthur Conan-Doyle</h1>

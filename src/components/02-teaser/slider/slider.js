@@ -65,7 +65,7 @@ class Slide extends React.Component {
                     style={{opacity: this.state.opacity}}
                     alt={headline}
                     src={src}
-                    onLoad={this.imageLoaded}
+                    onLoad={()=>{this.imageLoaded(); this.props.appOnLoad()}}
                 />
               </div>
               <article className="slide__content">
@@ -122,6 +122,7 @@ class Slider extends React.Component {
                   handleSlideClick={this.props.handleSlideClick}
                   handleTrackerUpdate={this.props.handleTrackerNext}
                   onModalClick={this.props.onModalClick}
+                  appOnLoad={this.props.appOnLoad}
                 />
               )
             })}

@@ -4,7 +4,6 @@ import './timeline.scss'
 import '../../02-teaser/slider/slider.scss'
 import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker'
 import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
-import { Loading } from '../../01-global/loading'
 import {slideData} from './timelineData'
 
 
@@ -104,9 +103,6 @@ export class Timeline extends React.Component {
      return (
         <React.Fragment>
           {/* Loading component  */}
-          <Loading
-            state={this.state.loading}
-          />
           <section className='flex flex-col justify-center h-screen overflow-x-hidden'>
 
           {slideData.map(slide => {
@@ -144,6 +140,7 @@ export class Timeline extends React.Component {
                 onModalClick={this.onModalClick}
                 handleTrackerNext={this.handleTrackerNext}
                 handleTrackerPrev={this.handleTrackerPrev}
+                appOnLoad={this.props.appOnLoad}
                 />
             </div>
           </section>

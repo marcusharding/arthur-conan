@@ -18,6 +18,8 @@ export class App extends Component {
       done: false,
       sideDrawerOpen: false,
     }
+
+    this.appOnLoad = this.appOnLoad.bind(this);
   }
 
   // Function to control opening the sideDrawer
@@ -37,9 +39,11 @@ export class App extends Component {
     this.setState({ sideDrawerOpen: false });
   };
 
-
   componentDidMount() {
     this.backdropClickHandler();
+  }
+
+  appOnLoad = () => {
     setTimeout(() => {
       this.setState({ loading: true });
     }, 1000);
@@ -72,9 +76,9 @@ export class App extends Component {
           <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
           <div onClick={this.backdropClickHandler} className="h-full w-full" style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
             <Switch>
-              <Route path="/" component={LandingPage} exact />
-              <Route path="/Map" component={PortsmouthMap} />
-              <Route path="/Timeline" component={Timeline} />
+              <Route path="/" render={() => <LandingPage appOnLoad={this.appOnLoad} isAuthed={true} />} exact />
+              <Route path="/Map" render={() => <PortsmouthMap appOnLoad={this.appOnLoad} isAuthed={true} />} />
+              <Route path="/Timeline" render={() => <Timeline appOnLoad={this.appOnLoad} isAuthed={true} />} />
               <Route component={Error} />
             </Switch>
           </div>

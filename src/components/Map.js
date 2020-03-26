@@ -2,7 +2,6 @@ import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
-import { Loading } from '../components/01-global/loading'
 import { TimelineModal } from '../components/03-objects/timeline_modal/timeline_modal'
 import {slideData} from '../components/04-components/timeline/timelineData'
 
@@ -93,9 +92,6 @@ export class PortsmouthMap extends React.Component {
     return (
       <React.Fragment>
         {/* Loading component  */}
-        <Loading
-          state={this.state.loading}
-        />
 
         <section className="flex justify-center items-center">
           {/* Modal to open on marker click */}
@@ -115,13 +111,14 @@ export class PortsmouthMap extends React.Component {
           <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
               <TileLayer
+                onLoad={this.props.appOnLoad}
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
                 attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               />
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
               {slideData.map(slide => {
                 return (
-                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault(): this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
+                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
                 )
               })} 
               <ZoomControl position="bottomright" />
