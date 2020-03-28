@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "https://arthur-conan.netlify.com",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#111517",
   "background_color": "#111517"
