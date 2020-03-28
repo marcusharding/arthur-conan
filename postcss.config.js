@@ -1,7 +1,7 @@
 const purgecss = require('@fullhuman/postcss-purgecss')({
   content: [
-    './src/components/**/**/**/*.jsx',
-    './src/components/**/**/**/*.js',
+    './src/**/*/.jsx',
+    './src/**/*.js',
     './public/index.html'
   ],
   css: ['./src/tailwind.css'],
