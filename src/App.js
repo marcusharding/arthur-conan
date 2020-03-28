@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import './tailwind.css'
 import { LandingPage } from './components/LandingPage'
 import { PortsmouthMap } from './components/Map'
 import { Timeline } from './components/04-components/timeline/Timeline'
