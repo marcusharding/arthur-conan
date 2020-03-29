@@ -27,8 +27,8 @@ export class PortsmouthMap extends React.Component {
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
-      iconSize: [20,20]
-      });
+      iconSize: [20, 20]
+    });
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
@@ -47,11 +47,11 @@ export class PortsmouthMap extends React.Component {
     this.getLocation();
     setTimeout(() => {
       this.setState({ loading: true })
-      }, 800);
+    }, 800);
   }
 
   componentWillUnmount() {
-      navigator.geolocation.clearWatch(this.state.id);
+    navigator.geolocation.clearWatch(this.state.id);
   }
 
 
@@ -68,16 +68,16 @@ export class PortsmouthMap extends React.Component {
           y: ylocation
         });
         console.log(this.state.x);
+      }
+      const options = { enableHighAccuracy: true, maximumAge: 0 };
+      let locationid = navigator.geolocation.watchPosition(success, (err) => { console.error('ERROR(' + err.code + '): ' + err.message) }, options);
+      this.setState({ id: locationid });
+    } else {
+      console.log("didnt work");
     }
-    const options = {enableHighAccuracy: true, maximumAge: 0};
-    let locationid = navigator.geolocation.watchPosition(success, (err) => {console.error('ERROR(' + err.code + '): ' + err.message)}, options);
-    this.setState({id: locationid});
-  } else {
-    console.log("didnt work");
   }
-}
 
-  render(){
+  render() {
 
     // Setting two variables to apply some style to blur and fade the background when modal is active / inactive
     const modalActive = {

@@ -51,6 +51,7 @@ export class App extends Component {
     setTimeout(() => {
       this.setState({ done: true });
     }, 2000);
+    console.log('didmount');
   }
 
   render() {
