@@ -34,15 +34,15 @@ export class App extends Component {
     this.setState({ sideDrawerOpen: false });
   };
 
-
   componentDidMount() {
-    this.backdropClickHandler();
+    this.setState({ sideDrawerOpen: false });
     setTimeout(() => {
       this.setState({ loading: true });
     }, 1000);
     setTimeout(() => {
       this.setState({ done: true });
     }, 2000);
+    console.log('didmount');
   }
 
   render() {

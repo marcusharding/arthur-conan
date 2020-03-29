@@ -13,9 +13,8 @@ const sideDrawer = props => {
                 <SideDrawerButton click={props.sidedrawerClickHandler} />
             </div>
             <ul>
-                <li><NavLink to='/'>Homepage</NavLink></li>
-                <li><NavLink to='/Map'>Map</NavLink></li>
-                <li><NavLink to='/Timeline'>Timeline</NavLink></li>
+            <NavLink onClick={props.sidedrawerClickHandler} to='/Map'><li>Map</li></NavLink>
+                <NavLink onClick={props.sidedrawerClickHandler} to='/Timeline'><li>Timeline</li></NavLink>
             </ul>
         </nav>
     );

@@ -21,13 +21,13 @@ export class PortsmouthMap extends React.Component {
       y: 0,
       id: null,
       loading: false,
-      bgBlur: 1, 
+      bgBlur: 1,
       modalActive: false
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
-      iconSize: [20,20]
-      });
+      iconSize: [20, 20]
+    });
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
@@ -37,18 +37,18 @@ export class PortsmouthMap extends React.Component {
     this.setState((prevState) => {
       return { modalActive: !prevState.modalActive };
     });
-    this.setState({bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9: this.state.bgBlur + 0.9});
+    this.setState({ bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9 : this.state.bgBlur + 0.9 });
   }
 
   componentDidMount() {
     this.getLocation();
     setTimeout(() => {
       this.setState({ loading: true })
-      }, 800);
+    }, 800);
   }
 
   componentWillUnmount() {
-      navigator.geolocation.clearWatch(this.state.id);
+    navigator.geolocation.clearWatch(this.state.id);
   }
 
 
@@ -65,16 +65,16 @@ export class PortsmouthMap extends React.Component {
           y: ylocation
         });
         console.log(this.state.x);
+      }
+      const options = { enableHighAccuracy: true, maximumAge: 0 };
+      let locationid = navigator.geolocation.watchPosition(success, (err) => { console.error('ERROR(' + err.code + '): ' + err.message) }, options);
+      this.setState({ id: locationid });
+    } else {
+      console.log("didnt work");
     }
-    const options = {enableHighAccuracy: true, maximumAge: 0};
-    let locationid = navigator.geolocation.watchPosition(success, (err) => {console.error('ERROR(' + err.code + '): ' + err.message)}, options);
-    this.setState({id: locationid});
-  } else {
-    console.log("didnt work");
   }
-}
 
-  render(){
+  render() {
 
     // Setting two variables to apply some style to blur and fade the background when modal is active / inactive
     const modalActive = {
@@ -101,7 +101,7 @@ export class PortsmouthMap extends React.Component {
           />
 
           {/* Containing div to blur the map when modal is active */}
-          <div className="h-screen relative w-full" style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
+          <div className="h-screen relative w-full" style={{ ...this.state.bgBlur < 0.1 ? modalActive : modalInactive }}>
             <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
               <TileLayer
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
@@ -109,7 +109,7 @@ export class PortsmouthMap extends React.Component {
               />
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
               <Marker onClick={this.onMarkerClick} position={[50.7906046, -1.0906947]}>
-                
+
               </Marker>
               <ZoomControl position="bottomright" />
             </Map>

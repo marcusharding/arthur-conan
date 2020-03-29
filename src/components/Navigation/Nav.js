@@ -10,7 +10,6 @@ const Nav = props => (
             </div>
             <div className='toolbar_nav-items'>
                 <ul>
-                    <li><NavLink to='/'>Homepage</NavLink></li>
                     <li><NavLink to='/Map'>Map</NavLink></li>
                     <li><NavLink to='/Timeline'>Timeline</NavLink></li>
                 </ul>
