@@ -14,7 +14,7 @@ const sideDrawer = props => {
             </div>
             <ul>
             <NavLink onClick={props.sidedrawerClickHandler} to='/Map'><li>Map</li></NavLink>
-                <NavLink onClick={props.sidedrawerClickHandler} to='/Timeline'><li>Timeline</li></NavLink>
+            <NavLink onClick={props.sidedrawerClickHandler} to='/Timeline'><li>Timeline</li></NavLink>
             </ul>
         </nav>
     );

@@ -54,7 +54,7 @@ class Slide extends React.Component {
             <li 
             ref={this.slide}
             className={classNames} 
-            onClick={()=>{this.handleSlideClick(); this.props.indexUpdater(current)}}
+            onClick={(e)=>{this.handleSlideClick(); current === index ? e.preventDefault(): this.props.handleTrackerUpdate();}}
             onMouseMove={this.handleMouseMove}
             onMouseLeave={this.handleMouseLeave}
             style={slideMargin}
@@ -65,7 +65,7 @@ class Slide extends React.Component {
                     style={{opacity: this.state.opacity}}
                     alt={headline}
                     src={src}
-                    onLoad={this.imageLoaded}
+                    onLoad={()=>{this.imageLoaded(); this.props.appOnLoad()}}
                 />
               </div>
               <article className="slide__content">
@@ -84,9 +84,9 @@ class Slide extends React.Component {
 // Slider control
 // =========================
 
-const SliderControl = ({ type, title, handleClick, trackerClick, indexUpdater, current }) => {
+const SliderControl = ({ type, title, handleClick, handleTrackerUpdate, current }) => {
     return (
-      <button className={`btn btn--${type}`} title={title} onClick={()=>{indexUpdater(current); handleClick(); trackerClick();}}>
+      <button className={`btn btn--${type}`} title={title} onClick={()=>{handleClick(); handleTrackerUpdate();}}>
         <svg className="icon" viewBox="0 0 24 24">
           <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
         </svg>
@@ -99,49 +99,13 @@ const SliderControl = ({ type, title, handleClick, trackerClick, indexUpdater, c
 // =========================
 
 class Slider extends React.Component {
-    constructor(props) {
-      super(props)
-      
-      this.state = { current: 0 }
-      this.handlePreviousClick = this.handlePreviousClick.bind(this)
-      this.handleNextClick = this.handleNextClick.bind(this)
-      this.handleSlideClick = this.handleSlideClick.bind(this)
-    }
-    
-    handlePreviousClick() {
-      const previous = this.state.current - 1
-          
-      this.setState({ 
-        current: (previous < 0) 
-          ? this.props.slides.length - 1
-          : previous
-      })
-    }
-    
-    handleNextClick() {
-      const next = this.state.current + 1;
-      
-      this.setState({ 
-        current: (next === this.props.slides.length) 
-          ? 0
-          : next
-      })
-    }
-    
-    handleSlideClick(index) {
-      if (this.state.current !== index) {
-        this.setState({
-          current: index
-        })
-      }
-    }
   
     render() {
-      const { current, direction } = this.state
+      // const { current, direction } = this.props.current
       const { slides, heading } = this.props 
       const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
       const wrapperTransform = {
-        'transform': `translateX(-${current * (100 / slides.length)}%)`
+        'transform': `translateX(-${this.props.current * (100 / slides.length)}%)`
       }
       
       return (
@@ -154,10 +118,11 @@ class Slider extends React.Component {
                 <Slide
                   key={slide.index}
                   slide={slide}
-                  current={current}
-                  handleSlideClick={this.handleSlideClick}
+                  current={this.props.current}
+                  handleSlideClick={this.props.handleSlideClick}
+                  handleTrackerUpdate={this.props.handleTrackerNext}
                   onModalClick={this.props.onModalClick}
-                  indexUpdater={this.props.indexUpdater}
+                  appOnLoad={this.props.appOnLoad}
                 />
               )
             })}
@@ -166,20 +131,18 @@ class Slider extends React.Component {
           <div className="slider__controls">
             <SliderControl 
               type="previous"
-              current={current}
+              current={this.props.current}
               title="Go to previous slide"
-              handleClick={this.handlePreviousClick}
-              trackerClick={this.props.trackerPreviousClick}
-              indexUpdater={this.props.indexUpdater}
+              handleClick={this.props.handlePreviousClick}
+              handleTrackerUpdate={this.props.handleTrackerPrev}
             />
             
             <SliderControl 
               type="next"
-              current={current}
+              current={this.props.current}
               title="Go to next slide"
-              handleClick={this.handleNextClick}
-              trackerClick={this.props.trackerNextClick}
-              indexUpdater={this.props.indexUpdater}
+              handleClick={this.props.handleNextClick}
+              handleTrackerUpdate={this.props.handleTrackerNext}
             />
           </div>
         </div>

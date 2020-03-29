@@ -4,76 +4,23 @@ import './timeline.scss'
 import '../../02-teaser/slider/slider.scss'
 import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker'
 import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
-import { Loading } from '../../01-global/loading'
-import ACD1 from '../../../assets/images/arthurs_life/acd_1.jpg'
-import ACD2 from '../../../assets/images/arthurs_life/acd_2.jpg'
-import ACD3 from '../../../assets/images/arthurs_life/acd_3.jpg'
-import ACD4 from '../../../assets/images/arthurs_life/acd_4.jpg'
-import ACD5 from '../../../assets/images/arthurs_life/acd_5.jpg'
-import ACD6 from '../../../assets/images/arthurs_life/acd_6.JPG'
-import ACD7 from '../../../assets/images/arthurs_life/acd_7.jpg'
-
-const slideData = [
-    {
-      index: 0,
-      date: '1859',
-      headline: 'Arthur Conan-Doyle is born',
-      src: ACD1
-    },
-    {
-      index: 1,
-      date: '1882',
-      headline: 'Conan Doyle leaves for Portsmouth to establish his own medical practice.',
-      src: ACD2
-    },
-    {
-      index: 2,
-      date: '1883',
-      headline: 'He joins the Portsmouth Literary and Scientific Society.',
-      src: ACD3
-    },
-    {
-      index: 3,
-      date: '1884',
-      headline: 'J. Habakuk Jephson’s Statement is published.',
-      src: ACD4
-    },
-    {
-      index: 4,
-      date: '1885',
-      headline: 'On August 5th, Conan Doyle marries Louise “Toulie” Hawkins.',
-      src: ACD5
-    },
-    {
-      index: 5,
-      date: '1887',
-      headline: 'Study in scarlett published in beetons christmas annual',
-      src: ACD6
-    },
-    {
-      index: 6,
-      date: '1888',
-      headline: 'A Study in Scarlet, the first Sherlock Holmes story,  is published as a book.',
-      src: ACD7
-    }
-  ]
+import {slideData} from './timelineData'
 
 
-  // Getting length of tracker by dividing 100 by number of slides
-  const trackerLength = 100 / slideData.length
-
-
+// Getting length of tracker by dividing 100 by number of slides
+const trackerLength = 100 / slideData.length
 
 export class Timeline extends React.Component {
   constructor(props) {
     super(props);
 
-    this.trackerNextClick = this.trackerNextClick.bind(this);
-    this.trackerPreviousClick = this.trackerPreviousClick.bind(this);
-    this.slideIndexUpdater = this.slideIndexUpdater.bind(this);
     this.onModalClick = this.onModalClick.bind(this);
+    this.handlePreviousClick = this.handlePreviousClick.bind(this);
+    this.handleNextClick = this.handleNextClick.bind(this);
+    this.handleSlideClick = this.handleSlideClick.bind(this);
+    this.handleTrackerNext = this.handleTrackerNext.bind(this);
 
-    this.state = { trackerMargin: 0, slideIndex: 0, bgBlur: 1, modalActive: false, loading: false }
+    this.state = { trackerMargin: 0, current: 0, bgBlur: 1, modalActive: false, loading: false }
   }
 
   componentDidMount() {
@@ -82,27 +29,56 @@ export class Timeline extends React.Component {
       }, 800);
   }
 
-  slideIndexUpdater = (current) => {
-
-    this.setState({ slideIndex: current })
-    console.log(current)
+  // Previous click function for the slide button 
+  handlePreviousClick() {
+    const previous = this.state.current - 1
+    this.setState({ 
+      current: (previous < 0) 
+        ? slideData.length - 1
+        : previous
+    })
   }
 
-  // Function to control the margin of the tracker on each next button click
-  trackerNextClick = () => {
-    this.setState({ trackerMargin: this.state.trackerMargin + trackerLength })
+  // Next click function for slide button
+  handleNextClick() {
+    const next = this.state.current + 1;
+    this.setState({ 
+      current: (next === slideData.length) 
+        ? 0
+        : next
+    })
+  }
+
+  // Click function for on the slide
+  handleSlideClick(index) {
+    if (this.state.current !== index) {
+      this.setState({
+        current: index
+      })
+    }
+  }
+
+  // Updating timeline tracker on slider increment
+  handleTrackerNext = () => {
+    this.setState({ 
+      trackerMargin: (this.state.current === 0)
+      ? this.state.current + trackerLength
+      : this.state.trackerMargin + trackerLength
+    })
     if(this.state.trackerMargin > 100 - trackerLength * 2) {
       this.setState({trackerMargin: 0})
     }
   }
 
-  // Function to control the margin of the tracker on the previous button click
-  trackerPreviousClick = () => {
-    this.setState({ trackerMargin: this.state.trackerMargin - trackerLength })
-    if(this.state.trackerMargin < Math.round(trackerLength)) {
-      this.setState({trackerMargin: 100 - trackerLength})
-    } 
+  // Updating timeline tracker on slider decrement
+  handleTrackerPrev = () => {
+    this.setState({
+      trackerMargin: (this.state.current === 0)
+      ? trackerLength * slideData.length - trackerLength
+      : this.state.trackerMargin - trackerLength
+    })
   }
+
 
   // Toggle hiding and showing the modal on click + Bluring the background
   onModalClick = () => {
@@ -127,19 +103,22 @@ export class Timeline extends React.Component {
      return (
         <React.Fragment>
           {/* Loading component  */}
-          <Loading
-            state={this.state.loading}
-          />
           <section className='flex flex-col justify-center h-screen overflow-x-hidden'>
 
-          {/** TIMELINE MODAL */}
-            <TimelineModal
-              modalActive={this.state.modalActive}
-              onModalClick={this.onModalClick}
-            />
+          {slideData.map(slide => {
+              return (
+                <TimelineModal
+                  modalActive={this.state.modalActive}
+                  onModalClick={this.onModalClick}
+                  slides={slide}
+                  key={slide.index}
+                  current={this.state.current}
+                />
+              )
+            })}
             
           {/** CONTAINER TO BLUR ON MODAL OPEN */}
-          <section className="h-full flex flex-col justify-center" style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
+          <section className={`h-full flex flex-col justify-center ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
 
             <div className="w-11/12 mx-auto pb-2">
                 <p className="text-white text-3xl">Timeline</p>
@@ -153,11 +132,15 @@ export class Timeline extends React.Component {
             <div className="w-11/12 mx-auto">
                 <Slider
                 heading="Example Slider"
+                current={this.state.current}
                 slides={slideData}
-                trackerNextClick={this.trackerNextClick}
-                trackerPreviousClick={this.trackerPreviousClick}
+                handlePreviousClick={this.handlePreviousClick}
+                handleNextClick={this.handleNextClick}
+                handleSlideClick={this.handleSlideClick}
                 onModalClick={this.onModalClick}
-                indexUpdater={this.slideIndexUpdater}
+                handleTrackerNext={this.handleTrackerNext}
+                handleTrackerPrev={this.handleTrackerPrev}
+                appOnLoad={this.props.appOnLoad}
                 />
             </div>
           </section>

@@ -2,8 +2,8 @@ import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
-import { Loading } from '../components/01-global/loading'
 import { TimelineModal } from '../components/03-objects/timeline_modal/timeline_modal'
+import {slideData} from '../components/04-components/timeline/timelineData'
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -21,8 +21,9 @@ export class PortsmouthMap extends React.Component {
       y: 0,
       id: null,
       loading: false,
-      bgBlur: 1,
-      modalActive: false
+      bgBlur: 1, 
+      modalActive: false,
+      current: null
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
@@ -33,11 +34,13 @@ export class PortsmouthMap extends React.Component {
   }
 
   // Function to control marker click and toggle modal display + bg blur
-  onMarkerClick = () => {
+  onMarkerClick = (index) => {
     this.setState((prevState) => {
       return { modalActive: !prevState.modalActive };
     });
-    this.setState({ bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9 : this.state.bgBlur + 0.9 });
+    this.setState({bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9: this.state.bgBlur + 0.9});
+
+    this.setState({current: index})
   }
 
   componentDidMount() {
@@ -89,28 +92,35 @@ export class PortsmouthMap extends React.Component {
     return (
       <React.Fragment>
         {/* Loading component  */}
-        <Loading
-          state={this.state.loading}
-        />
 
         <section className="flex justify-center items-center">
           {/* Modal to open on marker click */}
-          <TimelineModal
-            modalActive={this.state.modalActive}
-            onModalClick={this.onMarkerClick}
-          />
+          {slideData.map(slide => {
+              return (
+                <TimelineModal
+                  modalActive={this.state.modalActive}
+                  onModalClick={this.onMarkerClick}
+                  slides={slide}
+                  key={slide.index}
+                  current={this.state.current}
+                />
+              )
+            })}
 
           {/* Containing div to blur the map when modal is active */}
-          <div className="h-screen relative w-full" style={{ ...this.state.bgBlur < 0.1 ? modalActive : modalInactive }}>
+          <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
               <TileLayer
+                onLoad={this.props.appOnLoad}
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
                 attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               />
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
-              <Marker onClick={this.onMarkerClick} position={[50.7906046, -1.0906947]}>
-
-              </Marker>
+              {slideData.map(slide => {
+                return (
+                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
+                )
+              })} 
               <ZoomControl position="bottomright" />
             </Map>
           </div>
