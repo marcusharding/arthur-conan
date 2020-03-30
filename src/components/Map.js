@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
 import { TimelineModal } from '../components/03-objects/timeline_modal/timeline_modal'
 import {slideData} from '../components/04-components/timeline/timelineData'
+import Control from 'react-leaflet-control';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -23,11 +24,16 @@ export class PortsmouthMap extends React.Component {
       loading: false,
       bgBlur: 1, 
       modalActive: false,
-      current: null
+      current: null,
+      center: [50.801225, -1.0661091]
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
       iconSize: [20, 20]
+    });
+    this.popUpMarker = L.icon({
+      iconUrl: require('../assets/images/popup-marker.png'),
+      iconSize: [35, 35]
     });
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -69,12 +75,18 @@ export class PortsmouthMap extends React.Component {
         });
         console.log(this.state.x);
       }
-      const options = { enableHighAccuracy: true, maximumAge: 0 };
+      const options = { enableHighAccuracy: true, maximumAge: 1000 };
       let locationid = navigator.geolocation.watchPosition(success, (err) => { console.error('ERROR(' + err.code + '): ' + err.message) }, options);
       this.setState({ id: locationid });
     } else {
       console.log("didnt work");
     }
+  }
+
+  reCenter() {
+    this.setState({
+      center: [this.state.x, this.state.y]
+    });
   }
 
   render() {
@@ -109,7 +121,7 @@ export class PortsmouthMap extends React.Component {
 
           {/* Containing div to blur the map when modal is active */}
           <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
-            <Map center={[this.state.x, this.state.y]} zoom={16} zoomControl={false} className="responsive-map">
+            <Map center={this.state.center} zoom={14} zoomControl={false} className="responsive-map">
               <TileLayer
                 onLoad={this.props.appOnLoad}
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
@@ -118,10 +130,15 @@ export class PortsmouthMap extends React.Component {
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
               {slideData.map(slide => {
                 return (
-                  slide.positionA & slide.positionB ? <Marker key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
+                  slide.positionA & slide.positionB ? <Marker icon={this.popUpMarker} key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
                 )
               })} 
               <ZoomControl position="bottomright" />
+              <Control position="bottomright" >
+              <button className="center-btn" onClick={() => this.reCenter()}>
+                  <img src={require('../assets/images/center.png')} />
+              </button>
+              </Control>
             </Map>
           </div>
         </section>
