@@ -13,7 +13,13 @@
 
 
   @media only screen and (max-width: 640px) {
-    div.leaflet-bottom.leaflet-right {
+    div.leaflet-control-zoom {
       display: none !important;
     }
+  }
+
+  .center-btn {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   }
