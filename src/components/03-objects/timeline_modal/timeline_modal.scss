@@ -1,11 +1,12 @@
 .timeline-Modal__container {
     position: absolute;
-    height: auto;
+    height: 80vh;
     width: 90%;
     z-index: 30;
     border-radius: 2%;
     left: 50%;
     margin-left: -45%;
+    margin-top: 1.6rem;
     img {
       border-top-left-radius: 2%;
       border-top-right-radius: 2%;
@@ -18,6 +19,21 @@
       left: 50%;
       margin-left: -12.5%;
     }
+}
+
+.timeline-Modal__img-container {
+  height: 30vh;
+
+}
+
+.timeline-Modal__txt-Container {
+white-space: inherit;
+overflow: auto;
+height: 50vh;
+
+p {
+  text-overflow: ellipsis;
+}
 }
 
 .close__container {
@@ -63,3 +79,4 @@
   .close:after {
     transform: rotate(-45deg);
   }
+
