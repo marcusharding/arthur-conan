@@ -19,6 +19,7 @@ const sideDrawer = props => {
                 <NavLink onClick={props.sidedrawerClickHandler} to='/Map' activeClassName='current' ><li><ExploreIcon className='Nav_icons' />Map</li></NavLink>
                 <NavLink onClick={props.sidedrawerClickHandler} to='/Timeline' activeClassName='current' ><li><TimelineIcon className='Nav_icons' />Timeline</li></NavLink>
                 <NavLink onClick={props.sidedrawerClickHandler} to='/About' activeClassName='current' ><li><SupervisorAccountIcon className='Nav_icons' />About</li></NavLink>
+                <p className='copyRight'>© Conan Doyle Collection. All Rights Reserved</p>
             </ul>
         </nav>
     );
