@@ -18,6 +18,8 @@ export class App extends Component {
       loading: false,
       done: false,
       sideDrawerOpen: false,
+      nav: false,
+      URL: null
     }
 
     this.appOnLoad = this.appOnLoad.bind(this);
@@ -45,6 +47,7 @@ export class App extends Component {
   }
 
   appOnLoad = () => {
+    this.setState({ URL: window.location.href });
     setTimeout(() => {
       this.setState({ loading: true });
     }, 1000);
@@ -65,16 +68,15 @@ export class App extends Component {
       filter: `blur(0px)`,
       opacity: 1,
     }
-
+  
     return (
       <Fragment>
 
         <BrowserRouter>
           <HomeLoading state={this.state} />
-          <Nav
+          {this.state.URL !== "http://localhost:3000/" && <Nav
             sideDrawerOpen={this.state.sideDrawerOpen}
-            drawerClickHandler={this.drawerToggleClickHandler}
-          />
+            drawerClickHandler={this.drawerToggleClickHandler} />}
           <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
           <div onClick={this.backdropClickHandler} className="h-full w-full" style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
             <Switch>

@@ -1,7 +1,7 @@
 // SideDrawer
 .side-drawer {
     height: 100vh;
-    background: #2A2E43;
+    background: #2a2e43;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
@@ -12,47 +12,79 @@
     transform: translateX(-110%);
     transition: transform 0.3s ease-out;
     display: block;
-    @media only screen and (min-width: 640px)  { 
+    @media only screen and (min-width: 640px) {
         display: none;
     }
 }
 
 .side-drawer.open {
-   transform: translateX(0);
+    transform: translateX(0);
 }
 
 .side-drawer {
     ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin: 0 1rem;
+        margin-top: 35%;
+    }
+
+    .Nav_icons {
+        width: auto;
+        height: 30px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        align-self: center;
+        color: white;
+    }
+
+    div {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .logo {
+        width: auto;
+        height: 6rem;
+        margin: auto;
+        margin-top: 10%;
+        margin-bottom: 0;
+    }
+
+    button {
+        position: absolute;
+        display: flex;
+        right: 0;
+    }
+    .copyRight{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: white;
+        font-size: 0.8rem;
+        margin: 0.8rem;
     }
 
     li {
-        margin: 0.5rem 1rem;
-        justify-content: center;
+        margin: 1.5rem 0rem;
         border-radius: 10px;
-        width: fit-content;
-    &:hover,
-    &:active {
-        background:rgba(58, 204, 225, 0.5);
-    }
+        display: flex;
+        align-items: center;
+        height: 2.5rem;
+        color: white;
+        width: 100%;
     }
 
-    a {
-        color: white;
-        text-decoration: none;
-        background-color: transparent;
-        transition: background-color 0.3s ease;
-        border-radius: 5px;
-        padding: 3px 10px;
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        text-align: center;
+    .current {
+        svg {
+            color: black;
+        }
+        li {
+            color: black;
+            background-color: #3497fd;
+        }
     }
 }

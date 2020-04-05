@@ -7,6 +7,7 @@ import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
 import {slideData} from './timelineData'
 
 
+
 // Getting length of tracker by dividing 100 by number of slides
 const trackerLength = 100 / slideData.length
 
@@ -28,6 +29,12 @@ export class Timeline extends React.Component {
       this.setState({ loading: true })
       }, 800);
   }
+
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    });
+  };
 
   // Previous click function for the slide button 
   handlePreviousClick() {
