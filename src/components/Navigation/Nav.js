@@ -12,6 +12,7 @@ const Nav = props => (
                 <ul>
                     <li><NavLink to='/Map'>Map</NavLink></li>
                     <li><NavLink to='/Timeline'>Timeline</NavLink></li>
+                    <li><NavLink to='/About'>About</NavLink></li>
                 </ul>
             </div>
         </nav>
