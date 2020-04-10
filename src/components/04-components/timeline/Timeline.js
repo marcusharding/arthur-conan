@@ -6,10 +6,11 @@ import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTrack
 import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
 import {slideData} from './timelineData'
 
+const timelineData = slideData.filter(function(value, index, arr){ return index < 12;});
 
 
 // Getting length of tracker by dividing 100 by number of slides
-const trackerLength = 100 / slideData.length
+const trackerLength = 100 / timelineData.length
 
 export class Timeline extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export class Timeline extends React.Component {
     const previous = this.state.current - 1
     this.setState({ 
       current: (previous < 0) 
-        ? slideData.length - 1
+        ? timelineData.length - 1
         : previous
     })
   }
@@ -50,7 +51,7 @@ export class Timeline extends React.Component {
   handleNextClick() {
     const next = this.state.current + 1;
     this.setState({ 
-      current: (next === slideData.length) 
+      current: (next === timelineData.length) 
         ? 0
         : next
     })
@@ -81,7 +82,7 @@ export class Timeline extends React.Component {
   handleTrackerPrev = () => {
     this.setState({
       trackerMargin: (this.state.current === 0)
-      ? trackerLength * slideData.length - trackerLength
+      ? trackerLength * timelineData.length - trackerLength
       : this.state.trackerMargin - trackerLength
     })
   }
@@ -107,12 +108,14 @@ export class Timeline extends React.Component {
       opacity: this.state.bgBlur
     }
 
+    console.log(timelineData)
+
      return (
         <React.Fragment>
           {/* Loading component  */}
           <section className='flex flex-col justify-center h-screen overflow-x-hidden'>
 
-          {slideData.map(slide => {
+          {timelineData.map(slide => {
               return (
                 <TimelineModal
                   modalActive={this.state.modalActive}
@@ -140,7 +143,7 @@ export class Timeline extends React.Component {
                 <Slider
                 heading="Example Slider"
                 current={this.state.current}
-                slides={slideData}
+                slides={timelineData}
                 handlePreviousClick={this.handlePreviousClick}
                 handleNextClick={this.handleNextClick}
                 handleSlideClick={this.handleSlideClick}

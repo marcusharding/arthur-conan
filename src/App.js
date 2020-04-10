@@ -72,9 +72,9 @@ export class App extends Component {
     return (
       <Fragment>
 
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <HomeLoading state={this.state} />
-          {this.state.URL !== "http://localhost:3000/" && <Nav
+          {this.props.basename !== `${this.props.basename}/map` && <Nav
             sideDrawerOpen={this.state.sideDrawerOpen}
             drawerClickHandler={this.drawerToggleClickHandler} />}
           <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />

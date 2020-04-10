@@ -114,7 +114,7 @@ class Slider extends React.Component {
             <h3 id={headingId} className="visuallyhidden">{heading}</h3>
             
             {slides.map(slide => {
-              return (
+              return ( slide.timelineModifier === true ?
                 <Slide
                   key={slide.index}
                   slide={slide}
@@ -124,6 +124,8 @@ class Slider extends React.Component {
                   onModalClick={this.props.onModalClick}
                   appOnLoad={this.props.appOnLoad}
                 />
+                :
+                (null)
               )
             })}
           </ul>

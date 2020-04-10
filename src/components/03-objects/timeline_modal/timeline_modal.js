@@ -18,7 +18,9 @@ export class TimelineModal extends React.Component {
                     <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">{this.props.slides.headline}</h1>
                     <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">{this.props.slides.date}</p>
                     <hr className="lg:pb-2"></hr>
-                    <p className="text-offBlack lg:text-xl">{this.props.slides.text}</p>
+                    <p className="text-offBlack lg:text-xl pb-2">{this.props.slides.text}</p>
+                    <hr className="lg:pb-2"></hr>
+                    {this.props.slides.link ? <a alt="" className="text-blue-700 text-lg" href={this.props.slides.link}>Find out more</a> : null}
                 </div>
             </div>
         )
