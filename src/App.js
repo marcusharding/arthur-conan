@@ -9,13 +9,6 @@ import { HomeLoading } from '../src/components/01-global/homepageLoading'
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 
-const NoMatchPage = () => {
-  return (
-    <h3>404 - Not found</h3>
-  );
-};
-
-
 export class App extends Component {
 
   constructor(props) {
@@ -71,7 +64,7 @@ export class App extends Component {
   
     return (
       <Fragment>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
           <HomeLoading state={this.state} />
           {this.props.basename !== `${this.props.basename}/map` && <Nav
             sideDrawerOpen={this.state.sideDrawerOpen}
@@ -82,7 +75,7 @@ export class App extends Component {
               <Route path="/" render={() => <LandingPage isAuthed={true} />} exact />
               <Route path="/Map" render={() => <PortsmouthMap isAuthed={true} />} />
               <Route path="/Timeline" render={() => <Timeline isAuthed={true} />} />
-              <Route component={NoMatchPage} />
+              <Route component={Error} />
             </Switch>
           </div>
         </BrowserRouter>

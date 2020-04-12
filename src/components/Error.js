@@ -2,8 +2,8 @@ import React from 'react';
  
 const Error = () => {
     return (
-       <div>
-          <p>Error: Page does not exist!</p>
+       <div className="h-screen w-full flex justify-center items-center">
+          <p className="text-white text-4xl">Error: Page does not exist!</p>
        </div>
     );
 }

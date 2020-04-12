@@ -7,6 +7,11 @@ import {slideData} from '../components/04-components/timeline/timelineData'
 import Control from 'react-leaflet-control';
 
 
+// Filtering two variables one for all main locations and one just or events at arthurs house 
+const elmGroveMapData = slideData.filter(data => data.arthursHouse === true)
+const mainMapData = slideData.filter(data => data.arthursHouse === false)
+
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -25,7 +30,9 @@ export class PortsmouthMap extends React.Component {
       bgBlur: 1, 
       modalActive: false,
       current: null,
-      center: [50.801225, -1.0661091]
+      center: [50.801225, -1.0661091],
+      arthursHouse: 3,
+      elmgroveModifier: false
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
@@ -37,16 +44,8 @@ export class PortsmouthMap extends React.Component {
     });
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
-  }
-
-  // Function to control marker click and toggle modal display + bg blur
-  onMarkerClick = (index) => {
-    this.setState((prevState) => {
-      return { modalActive: !prevState.modalActive };
-    });
-    this.setState({bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9: this.state.bgBlur + 0.9});
-
-    this.setState({current: index})
+    this.onModalPreviousClick = this.onModalPreviousClick.bind(this);
+    this.onModalNextClick = this.onModalNextClick.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +59,35 @@ export class PortsmouthMap extends React.Component {
     navigator.geolocation.clearWatch(this.state.id);
   }
 
+  // Function to control marker click and toggle modal display + bg blur
+  onMarkerClick = (index) => {
+    this.setState((prevState) => {
+      return { modalActive: !prevState.modalActive };
+    });
+    this.setState({bgBlur: this.state.bgBlur === 1 ? this.state.bgBlur - 0.9: this.state.bgBlur + 0.9});
+
+    this.setState({current: index})
+  }
+
+  onModalPreviousClick = (slide) => {
+    const currentIndex = elmGroveMapData.indexOf(slide)
+    const nextIndex = currentIndex === 0 ? 0 : (currentIndex - 1) % elmGroveMapData.length
+
+    this.setState({
+      arthursHouse: elmGroveMapData[nextIndex].index,
+      current: elmGroveMapData[nextIndex].index,
+    })
+  }
+
+  onModalNextClick = (slide) => {
+    const currentIndex = elmGroveMapData.indexOf(slide)
+    const nextIndex = (currentIndex + 1) % elmGroveMapData.length
+
+    this.setState({
+      arthursHouse: elmGroveMapData[nextIndex].index,
+      current: elmGroveMapData[nextIndex].index
+    })
+  }
 
   getLocation() {
     if (navigator.geolocation) {
@@ -91,6 +119,7 @@ export class PortsmouthMap extends React.Component {
 
   render() {
 
+
     // Setting two variables to apply some style to blur and fade the background when modal is active / inactive
     const modalActive = {
       filter: `blur(10px)`,
@@ -106,8 +135,8 @@ export class PortsmouthMap extends React.Component {
         {/* Loading component  */}
 
         <section className="flex justify-center items-center">
-          {/* Modal to open on marker click */}
-          {slideData.map(slide => {
+          {/* Modal for main map items */}
+          {mainMapData.map(slide => {
               return (
                 <TimelineModal
                   modalActive={this.state.modalActive}
@@ -119,6 +148,21 @@ export class PortsmouthMap extends React.Component {
               )
             })}
 
+          
+            {/* Modal for Arthurs House map items */}
+            {elmGroveMapData.filter(slide => this.state.arthursHouse === slide.index).map(filteredSlide => (
+                  <TimelineModal
+                    modalActive={this.state.modalActive}
+                    onModalClick={this.onMarkerClick}
+                    slides={filteredSlide}
+                    key={filteredSlide.index}
+                    index={filteredSlide.index}
+                    current={this.state.current}
+                    modalPrevious={this.onModalPreviousClick}
+                    modalNext={this.onModalNextClick}
+                  />
+            ))}
+
           {/* Containing div to blur the map when modal is active */}
           <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={this.state.center} zoom={14} zoomControl={false} className="responsive-map">
@@ -128,11 +172,17 @@ export class PortsmouthMap extends React.Component {
                 attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               />
               <Marker icon={this.userMarker} position={[this.state.x, this.state.y]}></Marker>
-              {slideData.map(slide => {
+              {/* Markers for the main map data */}
+              {mainMapData.map(slide => {
                 return (
                   slide.positionA & slide.positionB ? <Marker icon={this.popUpMarker} key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
                 )
               })} 
+
+              {/* Markers for the main map data */}
+              {elmGroveMapData.filter(slide => this.state.arthursHouse === slide.index).map(filteredSlide => (
+                filteredSlide.positionA & filteredSlide.positionB ? <Marker icon={this.popUpMarker} key={filteredSlide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(filteredSlide.index);}} position={[filteredSlide.positionA, filteredSlide.positionB]} /> : null
+              ))} 
               <ZoomControl position="bottomright" />
               <Control position="bottomright" >
               <button className="center-btn" onClick={() => this.reCenter()}>
