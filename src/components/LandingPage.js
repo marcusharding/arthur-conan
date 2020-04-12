@@ -22,7 +22,7 @@ export class LandingPage extends React.Component {
       <React.Fragment>
         {/* Loading component  */}
         <div className="header">
-          <img alt="Landing Page Background" className="header_img opacity-25" onLoad={this.props.appOnLoad} src={BgImage} />
+          <img alt="Landing Page Background" className="header_img opacity-25"  src={BgImage} />
           <div className="z-10 text-center wrapper">
             <h2 className="font-gabriela text-white text-2xl lg:text-4xl">The life of</h2>
             <h1 className="font-gabriela text-white text-3xl lg:text-6xl pb-6">Arthur Conan Doyle</h1>

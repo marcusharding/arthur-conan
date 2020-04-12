@@ -123,7 +123,7 @@ export class PortsmouthMap extends React.Component {
           <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={this.state.center} zoom={14} zoomControl={false} className="responsive-map">
               <TileLayer
-                onLoad={this.props.appOnLoad}
+                // onLoad={this.props.appOnLoad}
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
                 attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               />
@@ -136,7 +136,7 @@ export class PortsmouthMap extends React.Component {
               <ZoomControl position="bottomright" />
               <Control position="bottomright" >
               <button className="center-btn" onClick={() => this.reCenter()}>
-                  <img src={require('../assets/images/center.png')} />
+                  <img alt="" src={require('../assets/images/center.png')} />
               </button>
               </Control>
             </Map>

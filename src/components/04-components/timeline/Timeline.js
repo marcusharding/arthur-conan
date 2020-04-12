@@ -150,7 +150,7 @@ export class Timeline extends React.Component {
                 onModalClick={this.onModalClick}
                 handleTrackerNext={this.handleTrackerNext}
                 handleTrackerPrev={this.handleTrackerPrev}
-                appOnLoad={this.props.appOnLoad}
+                // appOnLoad={this.props.appOnLoad}
                 />
             </div>
           </section>

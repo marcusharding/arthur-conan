@@ -9,6 +9,12 @@ import { HomeLoading } from '../src/components/01-global/homepageLoading'
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 
+const NoMatchPage = () => {
+  return (
+    <h3>404 - Not found</h3>
+  );
+};
+
 
 export class App extends Component {
 
@@ -21,8 +27,6 @@ export class App extends Component {
       nav: false,
       URL: null
     }
-
-    this.appOnLoad = this.appOnLoad.bind(this);
   }
 
   // Function to control opening the sideDrawer
@@ -44,17 +48,13 @@ export class App extends Component {
 
   componentDidMount() {
     this.backdropClickHandler();
-  }
-
-  appOnLoad = () => {
     this.setState({ URL: window.location.href });
     setTimeout(() => {
-      this.setState({ loading: true });
-    }, 1000);
-    setTimeout(() => {
-      this.setState({ done: true });
-    }, 2000);
-    console.log('didmount');
+          this.setState({ loading: true });
+        }, 1000);
+        setTimeout(() => {
+          this.setState({ done: true });
+        }, 2000);
   }
 
   render() {
@@ -71,7 +71,6 @@ export class App extends Component {
   
     return (
       <Fragment>
-
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <HomeLoading state={this.state} />
           {this.props.basename !== `${this.props.basename}/map` && <Nav
@@ -80,10 +79,10 @@ export class App extends Component {
           <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
           <div onClick={this.backdropClickHandler} className="h-full w-full" style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
             <Switch>
-              <Route path="/" render={() => <LandingPage appOnLoad={this.appOnLoad} isAuthed={true} />} exact />
-              <Route path="/Map" render={() => <PortsmouthMap appOnLoad={this.appOnLoad} isAuthed={true} />} />
-              <Route path="/Timeline" render={() => <Timeline appOnLoad={this.appOnLoad} isAuthed={true} />} />
-              <Route component={Error} />
+              <Route path="/" render={() => <LandingPage isAuthed={true} />} exact />
+              <Route path="/Map" render={() => <PortsmouthMap isAuthed={true} />} />
+              <Route path="/Timeline" render={() => <Timeline isAuthed={true} />} />
+              <Route component={NoMatchPage} />
             </Switch>
           </div>
         </BrowserRouter>
