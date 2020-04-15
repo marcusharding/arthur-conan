@@ -29,6 +29,7 @@ export class Timeline extends React.Component {
     setTimeout(() => {
       this.setState({ loading: true })
       }, 800);
+      this.props.setURL(this.props.path);
   }
 
   drawerToggleClickHandler = () => {

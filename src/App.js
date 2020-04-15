@@ -20,6 +20,15 @@ export class App extends Component {
       nav: false,
       URL: null
     }
+
+    this.setURL = this.setURL.bind(this);
+  }
+
+  
+
+  // Function to set URL in order to control display of nav bar
+  setURL = (URL) => {
+    this.setState({URL: URL})
   }
 
   // Function to control opening the sideDrawer
@@ -41,7 +50,6 @@ export class App extends Component {
 
   componentDidMount() {
     this.backdropClickHandler();
-    this.setState({ URL: window.location.href });
     setTimeout(() => {
           this.setState({ loading: true });
         }, 1000);
@@ -51,7 +59,6 @@ export class App extends Component {
   }
 
   render() {
-
     // Setting two variables to apply some style to blur and fade the background when sideDraw is active / inActive 
     const sideMenuActive = {
       filter: `blur(10px)`,
@@ -64,17 +71,17 @@ export class App extends Component {
   
     return (
       <Fragment>
-        <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
+        <BrowserRouter basename="/">
           <HomeLoading state={this.state} />
-          {this.props.basename !== `${this.props.basename}/map` && <Nav
+          {this.state.URL !== `/` && <Nav
             sideDrawerOpen={this.state.sideDrawerOpen}
             drawerClickHandler={this.drawerToggleClickHandler} />}
           <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
           <div onClick={this.backdropClickHandler} className="h-full w-full" style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
             <Switch>
-              <Route path="/" render={() => <LandingPage isAuthed={true} />} exact />
-              <Route path="/Map" render={() => <PortsmouthMap isAuthed={true} />} />
-              <Route path="/Timeline" render={() => <Timeline isAuthed={true} />} />
+              <Route path="/" render={() => <LandingPage setURL={this.setURL} path="/" isAuthed={true} />} exact />
+              <Route path="/Map" render={() => <PortsmouthMap setURL={this.setURL} path="/map" isAuthed={true} />} />
+              <Route path="/Timeline" render={() => <Timeline setURL={this.setURL} path="/timeline" isAuthed={true} />} />
               <Route component={Error} />
             </Switch>
           </div>

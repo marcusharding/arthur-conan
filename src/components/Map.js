@@ -53,6 +53,7 @@ export class PortsmouthMap extends React.Component {
     setTimeout(() => {
       this.setState({ loading: true })
     }, 800);
+    this.props.setURL(this.props.path);
   }
 
   componentWillUnmount() {
