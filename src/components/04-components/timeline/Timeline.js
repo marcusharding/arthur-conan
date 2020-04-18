@@ -113,9 +113,10 @@ export class Timeline extends React.Component {
 
      return (
         <React.Fragment>
-          {/* Loading component  */}
+
           <section className='flex flex-col justify-center h-screen overflow-x-hidden'>
 
+          {/* timeline modals */}
           {timelineData.map(slide => {
               return (
                 <TimelineModal
@@ -134,6 +135,8 @@ export class Timeline extends React.Component {
             <div className="w-11/12 mx-auto pb-2">
                 <p className="text-white text-3xl">Timeline</p>
             </div>
+            
+            {/* timeline tracker to update as timeline scrolls */}
             <div className="w-11/12 mx-auto mb-6">
               <TimelineTracker
                 trackerLength={trackerLength}

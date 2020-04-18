@@ -159,7 +159,8 @@ export class PortsmouthMap extends React.Component {
             })}
 
           
-            {/* Modal for Arthurs House map items */}
+            {/* Modal for Arthurs House map items hidden on mobile */}
+            <div className="arthurs-house__container">
             {elmGroveMapData.filter(slide => this.state.arthursHouse === slide.index).map(filteredSlide => (
                   <TimelineModal
                     modalActive={this.state.modalActive}
@@ -173,12 +174,31 @@ export class PortsmouthMap extends React.Component {
                     counterIndex={this.state.counterIndex}
                   />
             ))}
+            </div>
+
+            {/* Modal for Arthurs house on mobile refactored to be scrollable by swipe */}
+            <div className=" lg:hidden">
+              <div className="arthurs-house__slider">
+              {elmGroveMapData.map(slide => (
+                <TimelineModal
+                  modalActive={this.state.modalActive}
+                  onModalClick={this.onMarkerClick}
+                  slides={slide}
+                  key={slide.index}
+                  index={slide.index}
+                  current={this.state.current}
+                  modalPrevious={this.onModalPreviousClick}
+                  modalNext={this.onModalNextClick}
+                  counterIndex={this.state.counterIndex}
+                />
+              ))}
+              </div>
+            </div>
 
           {/* Containing div to blur the map when modal is active */}
           <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={this.state.center} zoom={14} zoomControl={false} className="responsive-map">
               <TileLayer
-                // onLoad={this.props.appOnLoad}
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"
                 attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               />
@@ -190,7 +210,7 @@ export class PortsmouthMap extends React.Component {
                 )
               })} 
 
-              {/* Markers for the main map data */}
+              {/* Markers to scroll over arthurs house on desktop */}
               {elmGroveMapData.filter(slide => this.state.arthursHouse === slide.index).map(filteredSlide => (
                 filteredSlide.positionA & filteredSlide.positionB ? <Marker icon={this.popUpMarker} key={filteredSlide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(filteredSlide.index);}} position={[filteredSlide.positionA, filteredSlide.positionB]} /> : null
               ))} 
