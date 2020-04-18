@@ -30,3 +30,30 @@
       display: contents;
     }
   }
+
+  .arthurs-house__slider {
+    position: absolute;
+    width: 360px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    align-items: center;
+    scroll-snap-type: x mandatory;  
+    -webkit-overflow-scrolling: touch;
+    @media only screen and (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .arthurs-house-modal__container {
+    height: 80vh;
+    width: 100%;
+    z-index: 30;
+    border-radius: 2%;
+    margin-top: 1.6rem;
+    flex-shrink: 0;
+    position: relative;
+    margin-right: 20px;
+    scroll-snap-align: start;
+  }

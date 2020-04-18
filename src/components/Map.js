@@ -76,7 +76,6 @@ export class PortsmouthMap extends React.Component {
     const currentIndex = elmGroveMapData.indexOf(slide)
     const nextIndex = currentIndex === 0 ? 0 : (currentIndex - 1) % elmGroveMapData.length
     const counterIndex = (this.state.counterIndex === 1 ? 1 : this.state.counterIndex - 1)
-    console.log(counterIndex)
     
     this.setState({
       arthursHouse: elmGroveMapData[nextIndex].index,
@@ -90,7 +89,6 @@ export class PortsmouthMap extends React.Component {
     const currentIndex = elmGroveMapData.indexOf(slide)
     const nextIndex = (currentIndex + 1) % elmGroveMapData.length
     const counterIndex = (this.state.counterIndex === 5 ? 1 : this.state.counterIndex + 1)
-    console.log(counterIndex)
 
     this.setState({
       arthursHouse: elmGroveMapData[nextIndex].index,
@@ -145,6 +143,7 @@ export class PortsmouthMap extends React.Component {
         {/* Loading component  */}
 
         <section className="flex justify-center items-center">
+
           {/* Modal for main map items */}
           {mainMapData.map(slide => {
               return (
@@ -177,23 +176,28 @@ export class PortsmouthMap extends React.Component {
             </div>
 
             {/* Modal for Arthurs house on mobile refactored to be scrollable by swipe */}
-            <div className=" lg:hidden">
-              <div className="arthurs-house__slider">
-              {elmGroveMapData.map(slide => (
-                <TimelineModal
-                  modalActive={this.state.modalActive}
-                  onModalClick={this.onMarkerClick}
-                  slides={slide}
-                  key={slide.index}
-                  index={slide.index}
-                  current={this.state.current}
-                  modalPrevious={this.onModalPreviousClick}
-                  modalNext={this.onModalNextClick}
-                  counterIndex={this.state.counterIndex}
-                />
-              ))}
+              {this.state.arthursHouse === 3 && this.state.modalActive === true && this.state.current === 3 && (
+                <div className="arthurs-house__slider">
+                  {elmGroveMapData.map(slide => (
+                    <div data-key={slide.index} key={slide.index} className="arthurs-house-modal__container bg-white">
+                        <div className="close__container">
+                            <button onClick={this.onModalClick} className="close"></button>
+                        </div>
+                        <div className="responsive-img aspect-ratio timeline-Modal__img-container">
+                            <img alt={slide.headline} src={slide.src} ></img>
+                        </div>
+                        <div className="p-4 timeline-Modal__txt-Container">
+                            <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">{slide.headline}</h1>
+                            <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">{slide.date}</p>
+                            <hr className="lg:pb-2"></hr>
+                            <p className="text-offBlack lg:text-xl pb-2">{slide.text}</p>
+                            <hr className="lg:pb-2"></hr>
+                            {slide.link ? <a alt="" className="text-blue-700 text-lg" href={slide.link}>Find out more</a> : null}
+                        </div>
+                    </div>
+                  ))}
               </div>
-            </div>
+              )}
 
           {/* Containing div to blur the map when modal is active */}
           <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
