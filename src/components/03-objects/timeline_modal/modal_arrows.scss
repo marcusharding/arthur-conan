@@ -1,0 +1,62 @@
+// @import "compass/css3";
+
+.modal-btn--previous {
+    position: absolute;
+    height: 100%;
+    top: 7%;
+    justify-content: center;
+    align-items: flex-end;
+    &:hover {
+      cursor: pointer;
+    }
+    @media (min-width: '1024px') {
+      left: -40%;
+      top: 0%;
+      align-items: center;
+    }
+    fill: white;
+    &:hover {
+        fill: grey;
+    }
+  }
+
+  .modal-btn--next {
+    position: absolute;
+    height: 100%;
+    top: 7%;
+    right: 0;
+    justify-content: center;
+    align-items: flex-end;
+    &:hover {
+      cursor: pointer;
+    }
+    @media (min-width: '1024px') {
+      right: -40%;
+      top: 0%;
+      align-items: center;
+    }
+    fill: white;
+    &:hover {
+        fill: grey
+    }
+  }
+
+
+  .arthurs-house-txt--container {
+    display: none;
+    @media (min-width: '1024px') {
+      display: contents;
+    }
+  }
+
+  .counter {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    font-size: 30px;
+    font-family: Helvetica, sans-serif;
+    text-shadow: 0px 2px 0px rgba( 0, 0, 0, 0.2 );
+    color: #fff;
+  }

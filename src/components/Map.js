@@ -32,7 +32,8 @@ export class PortsmouthMap extends React.Component {
       current: null,
       center: [50.801225, -1.0661091],
       arthursHouse: 3,
-      elmgroveModifier: false
+      elmgroveModifier: false,
+      counterIndex: 1
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
@@ -70,23 +71,31 @@ export class PortsmouthMap extends React.Component {
     this.setState({current: index})
   }
 
+  // Controling the modal arrows to change through each key date that took place at Arthurs house in elm grove
   onModalPreviousClick = (slide) => {
     const currentIndex = elmGroveMapData.indexOf(slide)
     const nextIndex = currentIndex === 0 ? 0 : (currentIndex - 1) % elmGroveMapData.length
+    const counterIndex = (this.state.counterIndex === 1 ? 1 : this.state.counterIndex - 1)
+    console.log(counterIndex)
+    
+    this.setState({
+      arthursHouse: elmGroveMapData[nextIndex].index,
+      current: elmGroveMapData[nextIndex].index,
+      counterIndex: counterIndex
+    })
+  }
+
+  // Controling the modal arrows to change through each key date that took place at Arthurs house in elm grove
+  onModalNextClick = (slide) => {
+    const currentIndex = elmGroveMapData.indexOf(slide)
+    const nextIndex = (currentIndex + 1) % elmGroveMapData.length
+    const counterIndex = (this.state.counterIndex === 5 ? 1 : this.state.counterIndex + 1)
+    console.log(counterIndex)
 
     this.setState({
       arthursHouse: elmGroveMapData[nextIndex].index,
       current: elmGroveMapData[nextIndex].index,
-    })
-  }
-
-  onModalNextClick = (slide) => {
-    const currentIndex = elmGroveMapData.indexOf(slide)
-    const nextIndex = (currentIndex + 1) % elmGroveMapData.length
-
-    this.setState({
-      arthursHouse: elmGroveMapData[nextIndex].index,
-      current: elmGroveMapData[nextIndex].index
+      counterIndex: counterIndex
     })
   }
 
@@ -161,6 +170,7 @@ export class PortsmouthMap extends React.Component {
                     current={this.state.current}
                     modalPrevious={this.onModalPreviousClick}
                     modalNext={this.onModalNextClick}
+                    counterIndex={this.state.counterIndex}
                   />
             ))}
 

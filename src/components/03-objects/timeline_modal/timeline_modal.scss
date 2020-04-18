@@ -80,43 +80,4 @@ p {
     transform: rotate(-45deg);
   }
 
-  .modal-btn--previous {
-    position: absolute;
-    height: 100%;
-    top: 7%;
-    justify-content: center;
-    align-items: flex-end;
-    &:hover {
-      cursor: pointer;
-    }
-    @media (min-width: '1024px') {
-      left: -25%;
-      top: 0%;
-      align-items: center;
-    }
-  }
-
-  .modal-btn--next {
-    position: absolute;
-    height: 100%;
-    top: 7%;
-    right: 0;
-    justify-content: center;
-    align-items: flex-end;
-    &:hover {
-      cursor: pointer;
-    }
-    @media (min-width: '1024px') {
-      right: -25%;
-      top: 0%;
-      align-items: center;
-    }
-  }
-
-
-  .arthurs-house-txt--container {
-    display: none;
-    @media (min-width: '1024px') {
-      display: contents;
-    }
-  }
+  
