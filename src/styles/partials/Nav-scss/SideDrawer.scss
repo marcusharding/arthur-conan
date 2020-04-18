@@ -12,7 +12,7 @@
     transform: translateX(-110%);
     transition: transform 0.3s ease-out;
     display: block;
-    @media only screen and (min-width: 640px) {
+    @media only screen and (min-width: 1024px) {
         display: none;
     }
 }
@@ -24,12 +24,8 @@
 .side-drawer {
     ul {
         list-style: none;
-        padding: 0;
         display: flex;
         flex-direction: column;
-        height: 100%;
-        margin: 0 1rem;
-        margin-top: 35%;
     }
 
     .Nav_icons {
@@ -41,17 +37,9 @@
         color: white;
     }
 
-    div {
-        display: flex;
-        flex-direction: row;
-    }
-
     .logo {
-        width: auto;
-        height: 6rem;
-        margin: auto;
-        margin-top: 10%;
-        margin-bottom: 0;
+        width: 35%;
+        height: auto;
     }
 
     button {
@@ -60,22 +48,18 @@
         right: 0;
     }
     .copyRight{
-        position: absolute;
-        bottom: 0;
-        left: 0;
         color: white;
         font-size: 0.8rem;
-        margin: 0.8rem;
     }
 
     li {
-        margin: 1.5rem 0rem;
         border-radius: 10px;
         display: flex;
         align-items: center;
-        height: 2.5rem;
         color: white;
         width: 100%;
+        margin-bottom: 1.5rem;
+        padding: 5px;
     }
 
     .current {

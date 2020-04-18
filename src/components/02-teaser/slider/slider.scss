@@ -37,7 +37,7 @@
   z-index: 10;
   
   .btn {
-    --size: 3rem;
+    --size: 4rem;
     
     align-items: center;
     background-color: transparent;
@@ -132,7 +132,6 @@
   --d: 50;
 
   opacity: 1;
-  // pointer-events: auto;
   user-select: auto;
   
   @media (hover: hover) {
@@ -157,7 +156,6 @@
 
 .slide__image {
   --d: 20;
-  
   height: 100%;
   left: 0%;
   object-fit: cover;

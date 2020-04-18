@@ -210,13 +210,13 @@ export class PortsmouthMap extends React.Component {
               {/* Markers for the main map data */}
               {mainMapData.map(slide => {
                 return (
-                  slide.positionA & slide.positionB ? <Marker icon={this.popUpMarker} key={slide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(slide.index);}} position={[slide.positionA, slide.positionB]} /> : null
+                  slide.positionA & slide.positionB ? <Marker icon={this.popUpMarker} key={slide.index} onClick={()=>{if(this.state.modalActive === false) {this.onMarkerClick(slide.index);}}} position={[slide.positionA, slide.positionB]} /> : null
                 )
               })} 
 
               {/* Markers to scroll over arthurs house on desktop */}
               {elmGroveMapData.filter(slide => this.state.arthursHouse === slide.index).map(filteredSlide => (
-                filteredSlide.positionA & filteredSlide.positionB ? <Marker icon={this.popUpMarker} key={filteredSlide.index} onClick={(e)=>{this.state.modalActive === true ? e.preventDefault() : this.onMarkerClick(filteredSlide.index);}} position={[filteredSlide.positionA, filteredSlide.positionB]} /> : null
+                filteredSlide.positionA & filteredSlide.positionB ? <Marker icon={this.popUpMarker} key={filteredSlide.index} onClick={()=>{if(this.state.modalActive === false) { this.onMarkerClick(filteredSlide.index);}}} position={[filteredSlide.positionA, filteredSlide.positionB]} /> : null
               ))} 
               <ZoomControl position="bottomright" />
               <Control position="bottomright" >
