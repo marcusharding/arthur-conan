@@ -181,7 +181,7 @@ export class PortsmouthMap extends React.Component {
                   {elmGroveMapData.map(slide => (
                     <div data-key={slide.index} key={slide.index} className="arthurs-house-modal__container bg-white">
                         <div className="close__container">
-                            <button onClick={this.onModalClick} className="close"></button>
+                            <button onClick={this.onMarkerClick} className="close"></button>
                         </div>
                         <div className="responsive-img aspect-ratio timeline-Modal__img-container">
                             <img alt={slide.headline} src={slide.src} ></img>
