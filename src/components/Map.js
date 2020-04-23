@@ -33,7 +33,8 @@ export class PortsmouthMap extends React.Component {
       center: [50.801225, -1.0661091],
       arthursHouse: 3,
       elmgroveModifier: false,
-      counterIndex: 1
+      counterIndex: 1,
+      ArthursHousePopup: true
     }
     this.userMarker = L.icon({
       iconUrl: require('../assets/images/usermarker.png'),
@@ -95,6 +96,10 @@ export class PortsmouthMap extends React.Component {
       current: elmGroveMapData[nextIndex].index,
       counterIndex: counterIndex
     })
+  }
+
+  onClickArthursHousePopup = () => {
+    this.setState({ArthursHousePopup: false})
   }
 
   getLocation() {
@@ -177,6 +182,18 @@ export class PortsmouthMap extends React.Component {
 
             {/* Modal for Arthurs house on mobile refactored to be scrollable by swipe */}
               {this.state.arthursHouse === 3 && this.state.modalActive === true && this.state.current === 3 && (
+                <React.Fragment>
+                {/* pop up to inform user to swipe across each date */}
+                {this.state.ArthursHousePopup === true &&
+                  <div className="flex flex-col items-center text-center justify-center lg:hidden absolute h-full w-full inset-0 bg-primary z-50">
+                    <div className="wrapper">
+                      <p className="text-white text-3xl pb-8">Arthur's House at No. 1 Bush Villas</p>
+                      <p className="text-white text-xl pb-8">Swipe to navigate through each event that took place here at his home in Southsea</p>
+                      <button onClick={this.onClickArthursHousePopup} className="btn btn--secondary uppercase">Continue</button>
+                    </div>
+                  </div>
+                }
+
                 <div className="arthurs-house__slider">
                   {elmGroveMapData.map(slide => (
                     <div data-key={slide.index} key={slide.index} className="arthurs-house-modal__container bg-white">
@@ -197,6 +214,7 @@ export class PortsmouthMap extends React.Component {
                     </div>
                   ))}
               </div>
+              </React.Fragment>
               )}
 
           {/* Containing div to blur the map when modal is active */}

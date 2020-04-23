@@ -132,7 +132,7 @@ export class Timeline extends React.Component {
           {/** CONTAINER TO BLUR ON MODAL OPEN */}
           <section className={`h-full flex flex-col justify-center ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
 
-            <div className="w-11/12 mx-auto pb-2">
+            <div className="w-11/12 mx-auto pt-6">
                 <p className="text-white text-3xl">Timeline</p>
             </div>
             
@@ -156,7 +156,8 @@ export class Timeline extends React.Component {
                 handleTrackerPrev={this.handleTrackerPrev}
                 />
             </div>
-          </section>
+          </section> 
+            <p class={`text-white mx-auto pb-8 text-xl ${this.state.current === 0 ? 'opacity-100' : 'opacity-0'}`}>Click left or right to browse</p>
         </section>
       </React.Fragment>
      );
