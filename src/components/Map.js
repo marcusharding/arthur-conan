@@ -176,6 +176,7 @@ export class PortsmouthMap extends React.Component {
                     modalPrevious={this.onModalPreviousClick}
                     modalNext={this.onModalNextClick}
                     counterIndex={this.state.counterIndex}
+                    URL={'map'}
                   />
             ))}
             </div>

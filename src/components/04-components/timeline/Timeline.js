@@ -125,6 +125,7 @@ export class Timeline extends React.Component {
                   slides={slide}
                   key={slide.index}
                   current={this.state.current}
+                  URL={'timeline'}
                 />
               )
             })}
@@ -156,10 +157,13 @@ export class Timeline extends React.Component {
                 handleTrackerPrev={this.handleTrackerPrev}
                 />
             </div>
-          </section> 
             {this.state.modalActive === false && 
-              <p class={`text-white mx-auto pb-8 text-xl ${this.state.current === 0 ? 'opacity-100 animation-300' : 'opacity-0 animation-300'}`}>Click left or right to browse</p>
+              <div className="fixed lg:relative flex flex-row items-center w-full pl-4 pr-4 bottom-0 lg:w-1/2 ml-auto justify-between">
+                <p className={`text-white text-xl ${this.state.current === 0 ? 'opacity-100 animation-300' : 'opacity-0 animation-300'}`}>Click left or right to browse</p>
+                <p className="text-white text-3xl lg:pr-12"><span className="text-secondary opacity-75"> {this.state.current} / </span> {timelineData.length}</p>
+              </div>
             }
+          </section> 
         </section>
       </React.Fragment>
      );
