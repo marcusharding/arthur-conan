@@ -1,8 +1,7 @@
 import React from 'react'
 import './timeline_modal.scss'
-import backArrow from '../../../assets/svg/previous.svg'
-import nextArrow from '../../../assets/svg/next.svg'
 import './modal_arrows.scss'
+import LazyLoad from 'react-lazyload'
 
 export class TimelineModal extends React.Component {
 
@@ -41,7 +40,9 @@ export class TimelineModal extends React.Component {
                             <button onClick={this.props.onModalClick} className="close"></button>
                         </div>
                         <div className="responsive-img aspect-ratio timeline-Modal__img-container">
-                            <img alt={this.props.slides.headline} src={this.props.slides.src} ></img>
+                            <LazyLoad>
+                                <img alt={this.props.slides.headline} src={this.props.slides.src} ></img>
+                            </LazyLoad>
                         </div>
                         <div className="p-4 timeline-Modal__txt-Container">
                             <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">{this.props.slides.headline}</h1>

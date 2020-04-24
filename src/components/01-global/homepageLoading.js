@@ -3,7 +3,6 @@ import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import * as HomepageLoading from './loadingIcons/homepageLoading.json'
 import * as HomepageDone from './loadingIcons/homepageDone.json'
-import acdLogo from '../../assets/images/logo512.png'
 
 const loadingIconOptions = {
     loop: true,

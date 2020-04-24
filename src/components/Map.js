@@ -1,7 +1,7 @@
 import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet'
+import { Map, Marker, TileLayer, ZoomControl } from 'react-leaflet'
 import { TimelineModal } from '../components/03-objects/timeline_modal/timeline_modal'
 import {slideData} from '../components/04-components/timeline/timelineData'
 import Control from 'react-leaflet-control';
