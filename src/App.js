@@ -4,6 +4,7 @@ import './tailwind.css'
 import { LandingPage } from './components/LandingPage'
 import { PortsmouthMap } from './components/Map'
 import { Timeline } from './components/04-components/timeline/Timeline'
+import { About } from './components/About'
 import Error from './components/Error'
 import { HomeLoading } from '../src/components/01-global/homepageLoading'
 import Nav from './components/Navigation/Nav';
@@ -56,6 +57,13 @@ export class App extends Component {
         setTimeout(() => {
           this.setState({ done: true });
         }, 2000);
+
+    // if(this.state.done === false){
+    //   document.body.style.overflow = 'hidden'
+    // }
+    // if(this.state.done === true){
+    //   document.body.style.overflow = 'unset'
+    // }
   }
 
   render() {
@@ -82,6 +90,7 @@ export class App extends Component {
               <Route path="/" render={() => <LandingPage setURL={this.setURL} path="/" isAuthed={true} />} exact />
               <Route path="/Map" render={() => <PortsmouthMap setURL={this.setURL} path="/map" isAuthed={true} />} />
               <Route path="/Timeline" render={() => <Timeline setURL={this.setURL} path="/timeline" isAuthed={true} />} />
+              <Route path="/About" render={() => <About setURL={this.setURL} path="/about" isAuthed={true} />} />
               <Route component={Error} />
             </Switch>
           </div>
