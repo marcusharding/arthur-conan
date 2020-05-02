@@ -22,7 +22,7 @@ export class Timeline extends React.Component {
     this.handleSlideClick = this.handleSlideClick.bind(this);
     this.handleTrackerNext = this.handleTrackerNext.bind(this);
 
-    this.state = { trackerMargin: 0, current: 0, bgBlur: 1, modalActive: false, loading: false }
+    this.state = { trackerMargin: 0, current: 0, bgBlur: 1, modalActive: false, loading: false, currentDate: 1859 }
   }
 
   componentDidMount() {
@@ -74,7 +74,7 @@ export class Timeline extends React.Component {
       ? this.state.current + trackerLength
       : this.state.trackerMargin + trackerLength
     })
-    if(this.state.trackerMargin > 100 - trackerLength * 2) {
+    if(this.state.current === 11) {
       this.setState({trackerMargin: 0})
     }
   }
@@ -83,7 +83,7 @@ export class Timeline extends React.Component {
   handleTrackerPrev = () => {
     this.setState({
       trackerMargin: (this.state.current === 0)
-      ? trackerLength * timelineData.length - trackerLength
+      ? timelineData.length * trackerLength - trackerLength
       : this.state.trackerMargin - trackerLength
     })
   }
@@ -99,6 +99,9 @@ export class Timeline extends React.Component {
 
    render() {
 
+    console.log(this.state.trackerMargin);
+    console.log(this.state.current);
+
     // Setting two variables to apply some style to blur and fade the background when modal is active / inactive
     const modalActive = {
       filter: `blur(10px)`,
@@ -109,7 +112,6 @@ export class Timeline extends React.Component {
       opacity: this.state.bgBlur
     }
 
-    console.log(timelineData)
 
      return (
         <React.Fragment>
@@ -133,8 +135,9 @@ export class Timeline extends React.Component {
           {/** CONTAINER TO BLUR ON MODAL OPEN */}
           <section className={`h-full flex flex-col justify-center ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
 
-            <div className="w-11/12 mx-auto pt-6">
-                <p className="text-white text-3xl">Timeline</p>
+            <div className="w-11/12 mx-auto pt-6 flex items-center">
+                <p className="text-white text-3xl mr-8">Timeline</p>
+                <p className="text-secondary text-3xl">{this.state.currentDate}</p>
             </div>
             
             {/* timeline tracker to update as timeline scrolls */}
@@ -160,7 +163,7 @@ export class Timeline extends React.Component {
             {this.state.modalActive === false && 
               <div className="fixed lg:relative flex flex-row items-center w-full pl-4 pr-4 bottom-0 lg:w-1/2 ml-auto justify-between">
                 <p className={`text-white text-xl ${this.state.current === 0 ? 'opacity-100 animation-300' : 'opacity-0 animation-300'}`}>Click left or right to browse</p>
-                <p className="text-white text-3xl lg:pr-12"><span className="text-secondary opacity-75"> {this.state.current} / </span> {timelineData.length}</p>
+                <p className="text-white text-3xl lg:pr-12"><span className="text-secondary opacity-75"> {this.state.current + 1} / </span> {timelineData.length}</p>
               </div>
             }
           </section> 

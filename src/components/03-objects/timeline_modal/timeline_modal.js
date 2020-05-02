@@ -44,13 +44,13 @@ export class TimelineModal extends React.Component {
                                 <img alt={this.props.slides.headline} src={this.props.slides.src} ></img>
                             </LazyLoad>
                         </div>
-                        <div className="p-4 timeline-Modal__txt-Container">
-                            <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">{this.props.slides.headline}</h1>
+                        <div className="p-8 timeline-Modal__txt-Container">
+                            <h1 className="text-offBlack lg:text-2xl font-medium lg:pb-2">{this.props.slides.headline}</h1>
                             <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">{this.props.slides.date}</p>
-                            <hr className="lg:pb-2"></hr>
-                            <p className="text-offBlack lg:text-xl pb-2">{this.props.slides.text}</p>
-                            <hr className="lg:pb-2"></hr>
-                            {this.props.slides.link ? <a alt="" className="text-blue-700 text-lg" href={this.props.slides.link}>Find out more</a> : null}
+                            {/* <hr></hr> */}
+                            <p className="text-offBlack lg:text-xl py-4">{this.props.slides.text}</p>
+                            {/* <hr></hr> */}
+                            {this.props.slides.link ? <a alt="" className="btn btn--primary mt-4" href={this.props.slides.link}>Find out more</a> : null}
                         </div>
                     </div>
                 )}

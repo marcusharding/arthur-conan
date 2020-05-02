@@ -11,9 +11,6 @@
       border-top-left-radius: 2%;
       border-top-right-radius: 2%;
     }
-    hr {
-      border-color: #a0aec0;
-    }
     @media (min-width: '1024px') {
       width: 25%;
       left: 50%;
@@ -30,6 +27,10 @@
 white-space: inherit;
 overflow: auto;
 height: 50vh;
+
+hr {
+  border: solid 1px #353a50;
+}
 
 p {
   text-overflow: ellipsis;
@@ -79,6 +80,7 @@ p {
   .close:after {
     transform: rotate(-45deg);
   }
+
 
   // Rodal animations 
 
