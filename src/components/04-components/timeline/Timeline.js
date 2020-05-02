@@ -137,7 +137,9 @@ export class Timeline extends React.Component {
 
             <div className="w-11/12 mx-auto pt-6 flex items-center">
                 <p className="text-white text-3xl mr-8">Timeline</p>
-                <p className="text-secondary text-3xl">{this.state.currentDate}</p>
+                <div className="">
+                  <p className="text-secondary text-3xl">{this.state.currentDate}</p>
+                </div>
             </div>
             
             {/* timeline tracker to update as timeline scrolls */}
