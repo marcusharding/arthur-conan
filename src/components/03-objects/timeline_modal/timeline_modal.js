@@ -45,8 +45,8 @@ export class TimelineModal extends React.Component {
                             </LazyLoad>
                         </div>
                         <div className="p-8 timeline-Modal__txt-Container">
-                            <h1 className="text-offBlack lg:text-2xl font-medium lg:pb-2">{this.props.slides.headline}</h1>
-                            <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">{this.props.slides.date}</p>
+                            <h1 className="text-offBlack lg:text-2xl font-medium pb-2">{this.props.slides.headline}</h1>
+                            <p className="text-offBlack lg:text-3xl uppercase font-bold pb-2">{this.props.slides.date}</p>
                             {/* <hr></hr> */}
                             <p className="text-offBlack lg:text-xl py-4">{this.props.slides.text}</p>
                             {/* <hr></hr> */}
