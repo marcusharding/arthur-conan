@@ -26,3 +26,15 @@
         }
     }
 }
+
+.tracker-date--current {
+    opacity: 100;
+    animation-duration: 300ms;
+    animation: ease-in;
+}
+
+.tracker-date {
+    opacity: 0.25;
+    
+}
+
