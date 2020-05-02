@@ -5,6 +5,7 @@ import '../../02-teaser/slider/slider.scss'
 import { TimelineTracker } from '../../03-objects/timeline_tracker/timelineTracker'
 import { TimelineModal } from '../../03-objects/timeline_modal/timeline_modal'
 import {slideData} from './timelineData'
+import Div100vh from "react-div-100vh";
 
 const timelineData = slideData.filter(function(value, index, arr){ return index < 12;});
 
@@ -115,61 +116,62 @@ export class Timeline extends React.Component {
 
      return (
         <React.Fragment>
+          <Div100vh>
+            <section className={`h-full ${this.state.modalActive === true ? 'flex justify-center items-center' : null}`}>
 
-          <section className='flex flex-col justify-center h-screen overflow-x-hidden'>
+            {/* timeline modals */}
+            {timelineData.map(slide => {
+                return (
+                  <TimelineModal
+                    modalActive={this.state.modalActive}
+                    onModalClick={this.onModalClick}
+                    slides={slide}
+                    key={slide.index}
+                    current={this.state.current}
+                    URL={'timeline'}
+                  />
+                )
+              })}
+              
+              {/** CONTAINER TO BLUR ON MODAL OPEN */}
+              <section className={`h-full flex flex-col justify-center items-center overflow-x-hidden ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
 
-          {/* timeline modals */}
-          {timelineData.map(slide => {
-              return (
-                <TimelineModal
-                  modalActive={this.state.modalActive}
-                  onModalClick={this.onModalClick}
-                  slides={slide}
-                  key={slide.index}
-                  current={this.state.current}
-                  URL={'timeline'}
-                />
-              )
-            })}
-            
-          {/** CONTAINER TO BLUR ON MODAL OPEN */}
-          <section className={`h-full flex flex-col justify-center ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
-
-            <div className="w-11/12 mx-auto pt-6 flex items-center">
-                <p className="text-white text-3xl mr-8">Timeline</p>
-                <div className="">
-                  <p className="text-secondary text-3xl">{this.state.currentDate}</p>
+                <div className="w-11/12 mx-auto pt-6 flex items-center">
+                    <p className="text-white text-3xl mr-8">Timeline</p>
+                    <div className="">
+                      <p className="text-secondary text-3xl">{this.state.currentDate}</p>
+                    </div>
                 </div>
-            </div>
-            
-            {/* timeline tracker to update as timeline scrolls */}
-            <div className="w-11/12 mx-auto mb-6">
-              <TimelineTracker
-                trackerLength={trackerLength}
-                trackerMargin={this.state.trackerMargin}
-              />
-            </div>
-            <div className="w-11/12 mx-auto">
-                <Slider
-                heading="Example Slider"
-                current={this.state.current}
-                slides={timelineData}
-                handlePreviousClick={this.handlePreviousClick}
-                handleNextClick={this.handleNextClick}
-                handleSlideClick={this.handleSlideClick}
-                onModalClick={this.onModalClick}
-                handleTrackerNext={this.handleTrackerNext}
-                handleTrackerPrev={this.handleTrackerPrev}
-                />
-            </div>
-            {this.state.modalActive === false && 
-              <div className="fixed lg:relative flex flex-row items-center w-full pl-4 pr-4 bottom-0 lg:w-1/2 ml-auto justify-between">
-                <p className={`text-white text-xl ${this.state.current === 0 ? 'opacity-100 animation-300' : 'opacity-0 animation-300'}`}>Click left or right to browse</p>
-                <p className="text-white text-3xl lg:pr-12"><span className="text-secondary opacity-75"> {this.state.current + 1} / </span> {timelineData.length}</p>
-              </div>
-            }
-          </section> 
-        </section>
+              
+                {/* timeline tracker to update as timeline scrolls */}
+                <div className="w-11/12 mx-auto mb-6">
+                  <TimelineTracker
+                    trackerLength={trackerLength}
+                    trackerMargin={this.state.trackerMargin}
+                  />
+                </div>
+                <div className="w-11/12 mx-auto">
+                    <Slider
+                    heading="Example Slider"
+                    current={this.state.current}
+                    slides={timelineData}
+                    handlePreviousClick={this.handlePreviousClick}
+                    handleNextClick={this.handleNextClick}
+                    handleSlideClick={this.handleSlideClick}
+                    onModalClick={this.onModalClick}
+                    handleTrackerNext={this.handleTrackerNext}
+                    handleTrackerPrev={this.handleTrackerPrev}
+                    />
+                </div>
+                {this.state.modalActive === false && 
+                  <div className="fixed lg:relative flex flex-row items-center w-full pl-4 pr-4 bottom-0 lg:w-1/2 ml-auto justify-between">
+                    <p className={`text-white text-xl ${this.state.current === 0 ? 'opacity-100 animation-300' : 'opacity-0 animation-300'}`}>Click left or right to browse</p>
+                    <p className="text-white text-3xl lg:pr-12"><span className="text-secondary opacity-75"> {this.state.current + 1} / </span> {timelineData.length}</p>
+                  </div>
+                }
+              </section> 
+            </section>
+          </Div100vh>
       </React.Fragment>
      );
    }

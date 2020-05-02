@@ -85,7 +85,7 @@ export class App extends Component {
             sideDrawerOpen={this.state.sideDrawerOpen}
             drawerClickHandler={this.drawerToggleClickHandler} />}
           <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
-          <div onClick={this.backdropClickHandler} className="" style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
+          <div onClick={this.backdropClickHandler} style={{ ...this.state.sideDrawerOpen === false ? sideMenuInactive : sideMenuActive }}>
             <Switch>
               <Route path="/" render={() => <LandingPage setURL={this.setURL} path="/" isAuthed={true} />} exact />
               <Route path="/Map" render={() => <PortsmouthMap setURL={this.setURL} path="/map" isAuthed={true} />} />
