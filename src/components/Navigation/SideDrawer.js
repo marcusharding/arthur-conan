@@ -17,9 +17,21 @@ const sideDrawer = props => {
                 <p className="text-white text-lg w-2/3">The life of Arthur Conan Doyle</p>
             </div>
             <ul>
-                <NavLink onClick={props.sidedrawerClickHandler} to='/Map' activeClassName='current' ><li><ExploreIcon className='Nav_icons' />Map</li></NavLink>
-                <NavLink onClick={props.sidedrawerClickHandler} to='/Timeline' activeClassName='current' ><li><TimelineIcon className='Nav_icons' />Timeline</li></NavLink>
-                <NavLink onClick={props.sidedrawerClickHandler} to='/About' activeClassName='current' ><li><SupervisorAccountIcon className='Nav_icons' />About</li></NavLink>
+                <li>
+                    <NavLink onClick={props.sidedrawerClickHandler} to='/Map' activeClassName='current'>
+                        <div className="sideDrawer-icon__container"><ExploreIcon className='Nav_icons' />Map</div>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink onClick={props.sidedrawerClickHandler} to='/Timeline' activeClassName='current'>
+                        <div className="sideDrawer-icon__container"><TimelineIcon className='Nav_icons' />Timeline</div>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink onClick={props.sidedrawerClickHandler} to='/About' activeClassName='current'>
+                        <div className="sideDrawer-icon__container"><SupervisorAccountIcon className='Nav_icons' />About</div>
+                    </NavLink>
+                </li>
             </ul>
             <p className='copyRight'>© Conan Doyle Collection. All Rights Reserved</p>
         </nav>
