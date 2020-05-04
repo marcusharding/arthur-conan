@@ -204,12 +204,10 @@ export class PortsmouthMap extends React.Component {
                         <div className="responsive-img aspect-ratio timeline-Modal__img-container">
                             <img alt={slide.headline} src={slide.src} ></img>
                         </div>
-                        <div className="p-4 timeline-Modal__txt-Container">
-                            <h1 className="text-offBlack lg:text-xl font-semibold lg:pb-2">{slide.headline}</h1>
-                            <p className="text-offBlack lg:text-3xl uppercase font-bold lg:pb-2">{slide.date}</p>
-                            <hr className="lg:pb-2"></hr>
-                            <p className="text-offBlack lg:text-xl pb-2">{slide.text}</p>
-                            <hr className="lg:pb-2"></hr>
+                        <div className="p-8 timeline-Modal__txt-Container">
+                            <h1 className="text-offBlack text-xl lg:text-2xl font-medium pb-2">{slide.headline}</h1>
+                            <p className="text-offBlack text-2xl lg:text-3xl uppercase font-bold pb-2">{slide.date}</p>
+                            <p className="text-offBlack text-lg lg:text-xl pb-2">{slide.text}</p>
                             {slide.link ? <a alt="" className="text-blue-700 text-lg" href={slide.link}>Find out more</a> : null}
                         </div>
                     </div>

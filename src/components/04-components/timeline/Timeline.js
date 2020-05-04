@@ -134,13 +134,6 @@ export class Timeline extends React.Component {
 
                 <div className="w-11/12 mx-auto pt-6 flex items-center">
                     <p className="text-white text-3xl mr-8">Timeline</p>
-                    <div className="flex w-full">
-                    {/* {timelineData.map(slide => {
-                      return (
-                      <p style={{marginLeft: '2.5%'}} className={`self-end ${this.state.current === slide.index ? 'text-secondary text-2xl opacity-100 font-bold tracker-date--current' : 'text-white text-lg self-end opacity-25 font-light tracker-date'}`}>{slide.date}</p>
-                      )
-                    })} */}
-                    </div>
                 </div>
               
                 {/* timeline tracker to update as timeline scrolls */}
@@ -164,7 +157,7 @@ export class Timeline extends React.Component {
                     />
                 </div>
                 {this.state.modalActive === false && 
-                  <div className="fixed lg:relative flex flex-row items-center w-full pl-4 lg:pl-12 pr-4 bottom-0 lg:w-7/12 ml-auto justify-between">
+                  <div className="absolute lg:relative flex flex-row items-center w-full pl-4 lg:pl-12 pr-4 bottom-0 lg:w-7/12 ml-auto justify-between">
                     <p className={`text-white text-xl ${this.state.current === 0 ? 'opacity-100 animation-300' : 'opacity-0 animation-300'}`}>Click left or right to navigate</p>
                     <p className="text-white text-3xl lg:pr-12"><span className="text-secondary opacity-75"> {this.state.current + 1} / </span> {timelineData.length}</p>
                   </div>
