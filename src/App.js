@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './tailwind.css'
 import { LandingPage } from './components/LandingPage'
@@ -7,8 +7,8 @@ import { Timeline } from './components/04-components/timeline/Timeline'
 import { About } from './components/About'
 import Error from './components/Error'
 import { HomeLoading } from '../src/components/01-global/homepageLoading'
-import Nav from './components/Navigation/Nav';
-import SideDrawer from './components/Navigation/SideDrawer';
+import Nav from './components/Navigation/Nav'
+import SideDrawer from './components/Navigation/SideDrawer'
 
 export class App extends Component {
 
@@ -24,8 +24,6 @@ export class App extends Component {
 
     this.setURL = this.setURL.bind(this);
   }
-
-  
 
   // Function to set URL in order to control display of nav bar
   setURL = (URL) => {
@@ -58,12 +56,24 @@ export class App extends Component {
           this.setState({ done: true });
         }, 2000);
 
-    // if(this.state.done === false){
-    //   document.body.style.overflow = 'hidden'
-    // }
-    // if(this.state.done === true){
-    //   document.body.style.overflow = 'unset'
-    // }
+    // Changing the body's overflow to unset to allow scrolling once loading animation is complete
+    if(this.state.done === false){
+      document.body.style.overflow = 'hidden'
+    }
+    if(this.state.done === true){
+      document.body.style.overflow = 'unset'
+    }
+
+  }
+
+  // Changing the body's overflow to unset to allow scrolling once loading animation is complete
+  componentDidUpdate() {
+    if(this.state.done === false){
+      document.body.style.overflow = 'hidden'
+    }
+    if(this.state.done === true){
+      document.body.style.overflow = 'unset'
+    }
   }
 
   render() {
