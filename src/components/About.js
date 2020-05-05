@@ -3,13 +3,18 @@ import { NavLink } from 'react-router-dom'
 import Div100vh from 'react-div-100vh'
 
 export class About extends React.Component {
+
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
         return(
             <Div100vh>
-                <div className="lg:h-full flex flex-col justify-center w-90 mx-auto py-12 lg:py-0">
-                    <h1 className="text-white text-3xl pb-8"><span className="text-secondary font-semibold text-4xl lg:text-5xl pb-8">About</span><br></br><hr></hr>The Arthur Conan Doyle collection</h1>
+                <div className="lg:h-full flex flex-col justify-center w-90 mx-auto pt-24 pb-12 lg:pt-0 lg:pb-0">
+                    <h1 className="text-white text-3xl pb-8"><span className="text-secondary font-semibold text-4xl lg:text-5xl pb-8">About</span><br></br><hr className="pb-4"></hr>The Arthur Conan Doyle collection</h1>
                     <p className="text-white text-lg lg:text-xl pb-24">
-                    The Arthur Conan Doyle collection is a world-class collection based in Portsmouth Central Library that brings together books, photographs, objects, documents and memorabilia chronicling the life of Conan Doyle, his most famous character, Sherlock Holmes, and beyond. There is also the Arthur Conan Doyle Collection (Lancelyn Green Bequest) located at the Portsmouth Museum . We welcome you to come and visit the exhibition, archive and city, and why not conduct your own investigation of the famous writer, his works, life and legacy, including the Portsmouth-born, world-famous detective, Sherlock Holmes. 
+                    The Arthur Conan Doyle collection is a world-class collection based in Portsmouth Central Library that brings together books, photographs, objects, documents and memorabilia chronicling the life of Conan Doyle, his most famous character, Sherlock Holmes, and beyond. There is also the Arthur Conan Doyle Collection (Lancelyn Green Bequest) located at the Portsmouth Museum. We welcome you to come and visit the exhibition, archive and city, and why not conduct your own investigation of the famous writer, his works, life and legacy, including the Portsmouth-born, world-famous detective, Sherlock Holmes. 
                     </p>
                     <div className="flex flex-col lg:flex-row">
                         <div className="lg:w-1/2 text-white flex flex-col justify-between pb-12 lg:pb-0">
@@ -41,7 +46,7 @@ export class About extends React.Component {
                                 <p>PO1 2LJ</p>
                             </div>
                             <div>
-                                <a href="tel: 023 9283 4779" className="btn btn--primary mr-4">Contact</a>
+                                <a href="tel: 023 9283 4779" className="btn btn--primary mr-4 mb-4 sm:mb-0">Contact</a>
                                 <NavLink to="/map" className="btn btn--secondary">Find the museum</NavLink>
                             </div>
                         </div>

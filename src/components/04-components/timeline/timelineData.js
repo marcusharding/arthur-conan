@@ -139,7 +139,7 @@ const slideData = [
     {
       index: 9,
       date: '1890',
-      headline: 'Arthur Left Portsmouth in December to pursue his career in medicine',
+      headline: 'Arthur left Portsmouth in December to pursue his career in medicine',
       text: 'He left Portsmouth in 1890 so he could travel to Vienna to study Ophthalmology. He returned to London in 1891 to set up an ophthalmologist practice in Wimpole Street. In Conan Doyle’s own words, not a single patient crossed his door, which meant he could dedicate himself to writing. He also had an epiphany when he suffered a severe bout of influenza and decided, with great joy, to give up his medical career so he could concentrate solely on his literary one. He started toying with the idea of killing off Holmes so he could concentrate on more serious writing.',
       src: ACD11,
       location: '',
@@ -164,7 +164,7 @@ const slideData = [
       index: 11,
       date: '1930',
       headline: 'Sir Arthur Conan Doyle died on July 7. He was buried at the rose garden in Windlesham.',
-      text: 'He died of a heart attack at his home in Crowborough on July 7th 1930. He was found slumped against a wall, clutching his chest. Popular anecdote suggests his last words were for Jean, to whom he said "You are wonderful!" Due to his divided religious beliefs, it was decided to bury Sir Arthur in the Rose Garden of WIndlesham Manor, his home. Later when Jean passed away, he was buried again to rest with her, in Minstead Churchyard, New Forest.',
+      text: 'He died of a heart attack at his home in Crowborough on July 7th 1930. He was found slumped against a wall, clutching his chest. Popular anecdote suggests his last words were for Jean, to whom he said "You are wonderful!" Due to his divided religious beliefs, it was decided to bury Sir Arthur in the Rose Garden of Windlesham Manor, his home. Later when Jean passed away, he was buried again to rest with her, in Minstead Churchyard, New Forest.',
       src: ACD13,
       location: '',
       caption: '',

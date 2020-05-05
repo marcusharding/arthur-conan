@@ -582,9 +582,9 @@ video {
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 360px) {
   .container {
-    max-width: 640px;
+    max-width: 360px;
   }
 }
 
@@ -11040,7 +11040,7 @@ video {
   transition-duration: 1000ms;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 360px) {
   .sm\:sr-only {
     position: absolute;
     width: 1px;

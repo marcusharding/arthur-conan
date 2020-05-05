@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect } from 'react'
+import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './tailwind.css'
 import { LandingPage } from './components/LandingPage'

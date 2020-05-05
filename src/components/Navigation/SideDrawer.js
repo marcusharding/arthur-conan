@@ -13,7 +13,7 @@ const sideDrawer = props => {
     return (
         <nav className={`${drawerClasses} flex flex-col justify-between p-4`}>
             <div className="flex flex-col text-center items-center">
-                <img alt='' className='logo pb-4' src={ACD_logo} />
+                <img alt='' className='pb-4 w-1/3' src={ACD_logo} />
                 <p className="text-white text-lg w-2/3">The life of Arthur Conan Doyle</p>
             </div>
             <ul>

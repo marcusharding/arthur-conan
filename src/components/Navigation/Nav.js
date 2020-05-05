@@ -6,12 +6,14 @@ import ACD_logo from '../../assets/images/logo512.png';
 const Nav = props => (
     <header className={`${props.sideDrawerOpen === false ? 'block' : 'hidden'} toolbar`} >
         <nav className='toolbar_nav'>
-            <div className="hidden lg:flex items-center">
-                <img alt='' className='logo' src={ACD_logo} />
-                <p className="text-white text-xl pl-4 w-2/3 md:w-1/2 lg:w-full">The life of Arthur Conan Doyle</p>
-            </div>
             <div className='nav-drawer-button'>
                 <DrawerButton click={props.drawerClickHandler} />
+            </div>
+            <div className="flex justify-end lg:items-center">
+                <NavLink to='/Map'>
+                    <img alt='' className='w-1/6 lg:w-12' src={ACD_logo} />
+                </NavLink>
+                <p className="hidden lg:block text-white lg:text-xl pl-4 w-2/3 md:w-1/2 lg:w-full">The life of Arthur Conan Doyle</p>
             </div>
             <div className='toolbar_nav-items'>
                 <ul>

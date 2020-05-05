@@ -176,7 +176,10 @@
   position: relative;
   opacity: 1;
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  @media (min-width: '360px') {
+    font-size: 1.3rem;
+  }
   @media (min-width: '1024px') {
     font-size: 2rem;
   }

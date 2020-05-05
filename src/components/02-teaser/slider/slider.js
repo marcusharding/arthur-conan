@@ -122,7 +122,6 @@ class Slider extends React.Component {
                   handleSlideClick={this.props.handleSlideClick}
                   handleTrackerUpdate={this.props.handleTrackerNext}
                   onModalClick={this.props.onModalClick}
-                  // appOnLoad={this.props.appOnLoad}
                 />
                 :
                 (null)
