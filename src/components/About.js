@@ -1,12 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Div100vh from 'react-div-100vh'
+import $ from 'jquery'
 
 export class About extends React.Component {
-
-    componentDidMount() {
-        window.scrollTo(0, 0)
-    }
 
     render() {
         return(

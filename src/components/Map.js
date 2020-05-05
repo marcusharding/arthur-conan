@@ -107,14 +107,12 @@ export class PortsmouthMap extends React.Component {
       const success = (position) => {
         const xlocation = position.coords.latitude;
         const ylocation = position.coords.longitude;
-        console.log("x: " + xlocation + " y: " + ylocation);
         this.setState({
           x: xlocation
         });
         this.setState({
           y: ylocation
         });
-        console.log(this.state.x);
       }
       const options = { enableHighAccuracy: true, maximumAge: 1000 };
       let locationid = navigator.geolocation.watchPosition(success, (err) => { console.error('ERROR(' + err.code + '): ' + err.message) }, options);

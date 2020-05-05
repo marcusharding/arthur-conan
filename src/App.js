@@ -10,6 +10,11 @@ import { HomeLoading } from '../src/components/01-global/homepageLoading'
 import Nav from './components/Navigation/Nav'
 import SideDrawer from './components/Navigation/SideDrawer'
 
+// Seting a variable as local storage
+let ls = window.localStorage
+// Setting a value as the grabbed local storage item for wether the app load splash screen has played
+let myValue = ls.getItem('appLoaded')
+
 export class App extends Component {
 
   constructor(props) {
@@ -48,12 +53,15 @@ export class App extends Component {
   };
 
   componentDidMount() {
+
     this.backdropClickHandler();
     setTimeout(() => {
           this.setState({ loading: true });
         }, 1000);
         setTimeout(() => {
           this.setState({ done: true });
+          // Set local storage state to true after loading splash screen has played once
+          ls.setItem('appLoaded', true)
         }, 2000);
 
     // Changing the body's overflow to unset to allow scrolling once loading animation is complete
@@ -63,7 +71,6 @@ export class App extends Component {
     if(this.state.done === true){
       document.body.style.overflow = 'unset'
     }
-
   }
 
   // Changing the body's overflow to unset to allow scrolling once loading animation is complete
@@ -77,6 +84,7 @@ export class App extends Component {
   }
 
   render() {
+
     // Setting two variables to apply some style to blur and fade the background when sideDraw is active / inActive 
     const sideMenuActive = {
       filter: `blur(10px)`,
@@ -90,7 +98,9 @@ export class App extends Component {
     return (
       <Fragment>
         <BrowserRouter basename="/">
-          <HomeLoading state={this.state} />
+          {myValue === null && 
+            <HomeLoading state={this.state} />
+          }
           {this.state.URL !== `/` && <Nav
             sideDrawerOpen={this.state.sideDrawerOpen}
             drawerClickHandler={this.drawerToggleClickHandler} />}

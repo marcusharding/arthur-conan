@@ -101,7 +101,6 @@ const SliderControl = ({ type, title, handleClick, handleTrackerUpdate, current 
 class Slider extends React.Component {
   
     render() {
-      // const { current, direction } = this.props.current
       const { slides, heading } = this.props 
       const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
       const wrapperTransform = {

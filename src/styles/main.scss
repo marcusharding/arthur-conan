@@ -19,8 +19,6 @@
 // ==========================================================================
 @import './framework/fonts';
 
-//Nav scss
-
 //Navbar
 @import './partials/Nav-scss/Nav.scss';
 
@@ -32,9 +30,5 @@
 
 //Navbar_SideDrawer
 @import './partials/Nav-scss/SideDrawer.scss';
-
-//Site backdrop
-@import './partials/Nav-scss/Backdrops.scss';
-
 
 @import './framework/animations';

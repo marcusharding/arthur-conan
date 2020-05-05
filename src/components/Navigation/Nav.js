@@ -11,7 +11,7 @@ const Nav = props => (
             </div>
             <div className="flex justify-end lg:items-center">
                 <NavLink to='/Map'>
-                    <img alt='' className='w-1/6 lg:w-12' src={ACD_logo} />
+                    <img alt='' className='w-1/6 lg:w-12 ml-auto' src={ACD_logo} />
                 </NavLink>
                 <p className="hidden lg:block text-white lg:text-xl pl-4 w-2/3 md:w-1/2 lg:w-full">The life of Arthur Conan Doyle</p>
             </div>
