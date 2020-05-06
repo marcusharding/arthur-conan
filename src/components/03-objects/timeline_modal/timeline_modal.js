@@ -22,11 +22,9 @@ export class TimelineModal extends React.Component {
                     </div>
                 )}
 
-                {/* display modal when all below conditions are met  */}
-                
+                {/* display modal when all below conditions are met */}
                 {this.props.modalActive === true && this.props.slides.index === this.props.current && (
                     <div data-key={this.props.slides.index} className={`timeline-Modal__container bg-white ${this.props.modalActive === true ? 'rodal-zoom-enter animation-300' : 'rodal-zoom-leave animation-300'}`}>
-
                         <React.Fragment>
                         {this.props.slides.arthursHouse === true && this.props.URL === 'map' && (
                             <div className="hidden lg:block">
@@ -35,7 +33,6 @@ export class TimelineModal extends React.Component {
                             </div>
                         )}
                         </React.Fragment>
-                            
                         <div className="close__container">
                             <button onClick={this.props.onModalClick} className="close"></button>
                         </div>

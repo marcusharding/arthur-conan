@@ -115,7 +115,7 @@ export class Timeline extends React.Component {
           <Div100vh>
             <section className={`h-full ${this.state.modalActive === true ? 'flex justify-center items-center' : null}`}>
 
-            {/* timeline modals */}
+            {/* timeline modal */}
             {timelineData.map(slide => {
                 return (
                   <TimelineModal
