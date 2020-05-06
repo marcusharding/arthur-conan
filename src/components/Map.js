@@ -149,7 +149,7 @@ export class PortsmouthMap extends React.Component {
       <React.Fragment>
         {/* Loading component  */}
 
-        <section className="flex justify-center items-center">
+        <section className="flex justify-center items-center h-full">
 
           {/* Modal for main map items */}
           {mainMapData.map(slide => {
@@ -219,7 +219,7 @@ export class PortsmouthMap extends React.Component {
               )}
 
           {/* Containing div to blur the map when modal is active */}
-          <div className={`h-screen relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
+          <div className={`h-full relative w-full ${this.state.modalActive === true ? 'pointer-events-none' : ''}`} style={{...this.state.bgBlur < 0.1 ? modalActive: modalInactive}}>
             <Map center={this.state.center} zoom={14} zoomControl={false} className="responsive-map">
               <TileLayer
                 url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXZhbmdlbGluZXBhcGFuIiwiYSI6ImNrNmF3cGk2YjBjOTQzbG12MXNsa216ZmsifQ.JUuiqgZ0LktXMNWFRSX4Hw"

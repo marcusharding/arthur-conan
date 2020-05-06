@@ -11,11 +11,19 @@
     min-height: 100%;
   }
 
-
   @media only screen and (max-width: 640px) {
     div.leaflet-control-zoom {
       display: none !important;
     }
+  }
+
+  html {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  #root {
+    height: 100%;
   }
 
   .center-btn {
