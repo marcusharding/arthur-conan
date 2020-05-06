@@ -40,7 +40,7 @@
     overflow-x: auto;
     align-items: center;
     scroll-snap-type: x mandatory;  
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
     @media only screen and (min-width: 1024px) {
       display: none;
     }

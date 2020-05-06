@@ -229,7 +229,7 @@ export class PortsmouthMap extends React.Component {
                 )
               })} 
 
-              {/* Markers to scroll over arthurs house on desktop */}
+              {/* Marker to scroll over arthurs house on desktop */}
               {elmGroveMapData.filter(slide => this.state.arthursHouse === slide.index).map(filteredSlide => (
                 filteredSlide.positionA & filteredSlide.positionB ? <Marker icon={this.popUpMarker} key={filteredSlide.index} onClick={()=>{if(this.state.modalActive === false) { this.onMarkerClick(filteredSlide.index);}}} position={[filteredSlide.positionA, filteredSlide.positionB]} /> : null
               ))} 
