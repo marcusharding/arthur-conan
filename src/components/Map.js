@@ -44,6 +44,10 @@ export class PortsmouthMap extends React.Component {
       iconUrl: require('../assets/images/popup-marker.png'),
       iconSize: [35, 35]
     });
+    this.alternatePopUpMarker = L.icon({
+      iconUrl: require('../assets/images/alternate-popup-marker.png'),
+      iconSize: [35, 35]
+    });
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onModalPreviousClick = this.onModalPreviousClick.bind(this);
@@ -225,7 +229,7 @@ export class PortsmouthMap extends React.Component {
               {/* Markers for the main map data */}
               {mainMapData.map(slide => {
                 return (
-                  slide.positionA & slide.positionB ? <Marker icon={this.popUpMarker} key={slide.index} onClick={()=>{if(this.state.modalActive === false) {this.onMarkerClick(slide.index);}}} position={[slide.positionA, slide.positionB]} /> : null
+                  slide.positionA & slide.positionB ? <Marker icon={slide.timelineModifier === true ? this.popUpMarker : this.alternatePopUpMarker} key={slide.index} onClick={()=>{if(this.state.modalActive === false) {this.onMarkerClick(slide.index);}}} position={[slide.positionA, slide.positionB]} /> : null
                 )
               })} 
 
