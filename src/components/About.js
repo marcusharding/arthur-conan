@@ -33,7 +33,7 @@ export class About extends React.Component {
                         </div>
                         <div className="lg:w-1/2 text-white flex flex-col justify-between">
                             <div>
-                                <h2 className="text-xl pb-4 font-semibold">Or discover the Museum collection at following address:</h2>
+                                <h2 className="text-xl pb-4 font-semibold">Or discover the Museum collection at the following address:</h2>
                             </div>
                             <div className="pb-8">
                                 <p>A Study in Sherlock: Uncovering the Arthur Conan Doyle Collection</p>
@@ -44,7 +44,7 @@ export class About extends React.Component {
                             </div>
                             <div>
                                 <a href="tel: 023 9283 4779" className="btn btn--primary mr-4 mb-4 sm:mb-0">Contact</a>
-                                <NavLink to="/map" className="btn btn--secondary">Find the museum</NavLink>
+                                <NavLink to="/map" className="btn btn--secondary">Go to map</NavLink>
                             </div>
                         </div>
                     </div>
